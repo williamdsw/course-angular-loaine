@@ -1,3 +1,12 @@
-<p>Cursos Component!</p>
+
+<!-- printa valor da variavel 'nomeSite' -->
+<p> Lista de discos do site: {{ nomeSite }} </p>
+
+<ul>
+    <!-- itera valores da array 'albuns' -->
+    <li *ngFor="let album of albuns"> 
+        {{ album }} 
+    </li>
+</ul>
 
 <app-curso-detalhe></app-curso-detalhe>

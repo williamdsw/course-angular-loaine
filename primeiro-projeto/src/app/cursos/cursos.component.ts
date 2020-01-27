@@ -5,4 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.css']
 })
-export class CursosComponent {}
+export class CursosComponent {
+
+  nomeSite: string;
+  albuns: string[] = ['The Album', 'David Bowie', 'Star Fleet Project', 'Burn'];
+
+  constructor() {
+    this.nomeSite = 'https://williamdsw.github.io/listened-albums/';
+  }
+
+}
