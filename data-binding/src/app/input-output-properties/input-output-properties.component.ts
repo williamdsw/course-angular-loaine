@@ -8,8 +8,14 @@ import { Component } from '@angular/core';
 export class InputOutputPropertiesComponent {
 
   nomeDoCurso: string;
+  valorInicial: number;
 
   constructor() {
     this.nomeDoCurso = 'Angular';
+    this.valorInicial = 15;
+  }
+
+  onMudouValor(event) {
+    console.log (event.novoValor);
   }
 }

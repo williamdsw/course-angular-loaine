@@ -4,5 +4,8 @@
 
         <!-- Passa um valor para um Input exposto pelo selector -->
         <app-curso [nomeCurso]="nomeDoCurso"></app-curso>
+
+        <!-- Recupera o valor com Output 'mudouValor' -->
+        <app-contador [valor]="valorInicial" (mudouValor)="onMudouValor ($event);"></app-contador>
     </article>
 </section>

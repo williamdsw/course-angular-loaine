@@ -10,6 +10,7 @@ import { EventBindingComponent } from './event-binding/event-binding.component';
 import { TwoWayBindingComponent } from './two-way-binding/two-way-binding.component';
 import { InputOutputPropertiesComponent } from './input-output-properties/input-output-properties.component';
 import { InputPropertyComponent } from './input-property/input-property.component';
+import { OutputPropertyComponent } from './output-property/output-property.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { InputPropertyComponent } from './input-property/input-property.componen
     EventBindingComponent,
     TwoWayBindingComponent,
     InputOutputPropertiesComponent,
-    InputPropertyComponent
+    InputPropertyComponent,
+    OutputPropertyComponent
   ],
   imports: [
     BrowserModule,
