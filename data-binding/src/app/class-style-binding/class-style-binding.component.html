@@ -1,0 +1,33 @@
+<section>
+    <article>
+        <h3>Class e Style Binding</h3>
+        <div>
+            Selecione uma classe:
+
+            <!-- Variavel local de ambiente -->
+            <select #slt_classe (change)="0">
+                <option value="alert-success"> Sucesso </option>
+                <option value="alert-info"> Informação </option>
+                <option value="alert-warning"> Alerta </option>
+                <option value="alert-danger"> Erro </option>
+            </select>
+            <br><br>
+
+            <!-- Class binding -->
+            <div class="alert" role="alert" [class.alert-success]="slt_classe.value == 'alert-success'"> Sucesso </div>
+            <div class="alert" role="alert" [class.alert-info]="slt_classe.value == 'alert-info'"> Informação </div>
+            <div class="alert" role="alert" [class.alert-warning]="slt_classe.value == 'alert-warning'"> Alerta </div>
+            <div class="alert" role="alert" [class.alert-danger]="slt_classe.value == 'alert-danger'"> Erro </div>
+
+            <!-- Interpolation -->
+            <div class="alert {{ slt_classe.value }}" role="alert">
+                Texto colorido conforme o valor do combobox
+            </div>
+
+            <!-- Style binding -->
+            <div class="alert alert-danger" role="alert" [style.display]="slt_classe.value == 'alert-danger' ? 'block' : 'none' ">
+                Esse texto somente aparece em caso de erro
+            </div>
+        </div>
+    </article>
+</section>
