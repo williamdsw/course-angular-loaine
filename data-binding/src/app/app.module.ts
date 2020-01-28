@@ -11,6 +11,7 @@ import { TwoWayBindingComponent } from './two-way-binding/two-way-binding.compon
 import { InputOutputPropertiesComponent } from './input-output-properties/input-output-properties.component';
 import { InputPropertyComponent } from './input-property/input-property.component';
 import { OutputPropertyComponent } from './output-property/output-property.component';
+import { CicloComponent } from './ciclo/ciclo.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { OutputPropertyComponent } from './output-property/output-property.compo
     TwoWayBindingComponent,
     InputOutputPropertiesComponent,
     InputPropertyComponent,
-    OutputPropertyComponent
+    OutputPropertyComponent,
+    CicloComponent
   ],
   imports: [
     BrowserModule,

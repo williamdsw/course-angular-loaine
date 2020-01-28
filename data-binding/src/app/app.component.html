@@ -6,4 +6,8 @@
 
 <!-- <app-two-way-binding></app-two-way-binding> -->
 
-<app-input-output-properties></app-input-output-properties>
+<!-- <app-input-output-properties></app-input-output-properties> -->
+
+<app-ciclo [valorInicial]="valor" *ngIf="!deletarCiclo"></app-ciclo>
+<button (click)="mudarValor ();"> Mudar Valor </button>
+<button (click)="destruirCiclo ();"> Deletar </button>
