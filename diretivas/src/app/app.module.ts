@@ -7,6 +7,7 @@ import { TesteComponent } from './teste/teste.component';
 import { DiretivaNgswitchComponent } from './diretiva-ngswitch/diretiva-ngswitch.component';
 import { DiretivaNgforComponent } from './diretiva-ngfor/diretiva-ngfor.component';
 import { TemplateExemploComponent } from './template-exemplo/template-exemplo.component';
+import { DiretivaNgclassComponent } from './diretiva-ngclass/diretiva-ngclass.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { TemplateExemploComponent } from './template-exemplo/template-exemplo.co
     TesteComponent,
     DiretivaNgswitchComponent,
     DiretivaNgforComponent,
-    TemplateExemploComponent
+    TemplateExemploComponent,
+    DiretivaNgclassComponent
   ],
   imports: [
     BrowserModule
