@@ -1,0 +1,17 @@
+<h3> Removendo o * e usando template </h3>
+
+<!-- ngIf -->
+<ng-template [ngIf]="mostrarCursos">
+    <div> Lista de cursos aqui. </div>
+</ng-template>
+
+<div template="ngIf mostrarCursos" >
+    Lista de cursos aqui.
+</div>
+
+<!-- ngFor -->
+<ul>
+    <ng-template ngFor [ngForOf]="cursos" let-curso let-i="index">
+        <li> {{ i + 1 }} {{ curso }}</li>
+    </ng-template>
+</ul>
