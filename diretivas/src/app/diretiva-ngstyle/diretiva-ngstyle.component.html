@@ -1,0 +1,30 @@
+
+<!-- style binding / two-way data binding -->
+<h4> Styles com property binding (style binding) </h4>
+<button 
+        [style.backgroundColor]="ativo ? 'blue' : 'gray'"
+        [style.color]="ativo ? 'white' : 'black'"
+        [style.fontWeight]="ativo ? 'bold' : 'normal'"
+        [style.fontSize]="tamanhoFonte + 'px'"
+        (click)="mudarAtivo ();">
+    Mudar atributo ativo
+</button>
+
+<br><br>
+
+<!-- ngStyle -->
+<h4> Styles com diretiva ngStyle </h4>
+<button 
+        [ngStyle]="{
+            'backgroundColor': (ativo ? 'blue' : 'gray'),
+            'color': (ativo ? 'white' : 'black'),
+            'fontWeight': (ativo ? 'bold' : 'normal'),
+            'fontSize': (tamanhoFonte + 'px')
+        }"
+        (click)="mudarAtivo ();">
+    Mudar atributo ativo
+</button>
+
+<br><br>
+
+<input type="text" [(ngModel)]="tamanhoFonte">
