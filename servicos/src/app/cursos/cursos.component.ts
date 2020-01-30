@@ -12,13 +12,10 @@ export class CursosComponent implements OnInit {
   // FIELDS
 
   cursos: string[] = [];
-  cursosService: CursosService;
 
   // CONSTRUCTOR
 
-  constructor() {
-    this.cursosService = new CursosService();
-  }
+  constructor(private cursosService: CursosService) {}
 
   // LIFE CYCLE HOOKS
 
