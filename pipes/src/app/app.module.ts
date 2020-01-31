@@ -1,12 +1,17 @@
-import { SettingsService } from './settings.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localePT from '@angular/common/locales/pt';
 
 import { AppComponent } from './app.component';
 import { ExemplosPipesComponent } from './exemplos-pipes/exemplos-pipes.component';
+
+import { SettingsService } from './settings.service';
+
 import { CamelCasePipe } from './camel-case.pipe';
+import { FiltroArrayPipe } from './filtro-array.pipe';
+
 
 registerLocaleData (localePT, 'pt');
 
@@ -14,10 +19,12 @@ registerLocaleData (localePT, 'pt');
   declarations: [
     AppComponent,
     ExemplosPipesComponent,
-    CamelCasePipe
+    CamelCasePipe,
+    FiltroArrayPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     SettingsService,

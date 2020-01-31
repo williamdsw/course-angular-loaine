@@ -10,8 +10,22 @@
 <p> Título: {{ livro.titulo | uppercase | camelCase }}</p>
 <p> Estrelas: {{ livro.rating | number:'1.1-1' }}</p>
 <p> Páginas: {{ livro.numeroPaginas | number}}</p>
-<p> Preço: {{ livro.preco | currency:'BRL':true }}</p>
+<p> Preço: {{ livro.preco | currency:'BRL':'symbol' }}</p>
 <p> Data Lançamento: {{ livro.dataLancamento | date:'dd-MM-yyyy' }}</p>
 <p> Url: {{ livro.url }}</p>
 <br>
 <p> Título: {{ livro | json }}</p>
+
+<!-- Exemplo Pipe "Puro" -->
+<input type="text" #novoValor placeholder="Novo Curso">
+<button type="button" (click)="addCurso (novoValor.value);"> Add Curso </button>
+
+<br>
+
+<input type="text" [(ngModel)]="filtro" placeholder="Filtrar"/>
+
+<ul>
+    <li *ngFor="let liv of livros | filtroArray:filtro" >
+        {{ liv }}
+    </li>
+</ul>
