@@ -1,2 +1,11 @@
-<!-- permite suporte a rotas -->
-<router-outlet></router-outlet>
+<button mat-button [matMenuTriggerFor]="menu"> Rotas Ng2 </button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink=""> Home </button>
+  <button mat-menu-item routerLink="/login"> Login </button>
+  <button mat-menu-item routerLink="/cursos"> Cursos </button>
+</mat-menu>
+
+<div class="container">
+    <!-- permite suporte a rotas -->
+    <router-outlet></router-outlet>
+</div>
