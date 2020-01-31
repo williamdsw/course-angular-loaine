@@ -1,11 +1,16 @@
-<button mat-button [matMenuTriggerFor]="menu"> Rotas Ng2 </button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item routerLink=""> Home </button>
-  <button mat-menu-item routerLink="/login"> Login </button>
-  <button mat-menu-item routerLink="/cursos"> Cursos </button>
-</mat-menu>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1> Rotas Ng2 </h1>
+        <span class="menu-spacer"> </span>
+        <div>
+            <a mat-button routerLink="/login"> Login </a>
+            <a mat-button routerLink=""> Home </a>
+            <a mat-button routerLink="/cursos"> Cursos </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
 
+<!-- permite suporte a rotas -->
 <div class="container">
-    <!-- permite suporte a rotas -->
     <router-outlet></router-outlet>
 </div>
