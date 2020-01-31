@@ -45,3 +45,9 @@
         {{ liv }}
     </li>
 </ul>
+
+<!-- async = obtem o valor retornado e nao o Promise -->
+<p> {{ valorAsync | json }} </p>
+<p> {{ valorAsync | async }} </p>
+<p> {{ valorAsync2 | json }} </p>
+<p> {{ valorAsync2 | async }} </p>
