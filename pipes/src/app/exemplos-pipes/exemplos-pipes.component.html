@@ -7,7 +7,7 @@
 <!-- date = formata data -->
 <!-- json = formata objeto para json -->
 
-<p> Título: {{ livro.titulo | uppercase }}</p>
+<p> Título: {{ livro.titulo | uppercase | camelCase }}</p>
 <p> Estrelas: {{ livro.rating | number:'1.1-1' }}</p>
 <p> Páginas: {{ livro.numeroPaginas | number}}</p>
 <p> Preço: {{ livro.preco | currency:'BRL':true }}</p>
