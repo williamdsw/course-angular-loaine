@@ -1,0 +1,17 @@
+<h4> Exemplo de Pipes </h4>
+
+<!-- pipe | = transforma um valor a ser exibido num template -->
+<!-- uppercase = todas letras maiusculas -->
+<!-- number = formata numero -->
+<!-- currency = formata numero para moeda -->
+<!-- date = formata data -->
+<!-- json = formata objeto para json -->
+
+<p> Título: {{ livro.titulo | uppercase }}</p>
+<p> Estrelas: {{ livro.rating | number:'1.1-1' }}</p>
+<p> Páginas: {{ livro.numeroPaginas | number}}</p>
+<p> Preço: {{ livro.preco | currency:'BRL':true }}</p>
+<p> Data Lançamento: {{ livro.dataLancamento | date:'dd-MM-yyyy' }}</p>
+<p> Url: {{ livro.url }}</p>
+<br>
+<p> Título: {{ livro | json }}</p>
