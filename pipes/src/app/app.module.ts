@@ -11,6 +11,7 @@ import { SettingsService } from './settings.service';
 
 import { CamelCasePipe } from './camel-case.pipe';
 import { FiltroArrayPipe } from './filtro-array.pipe';
+import { FiltroArrayImpuroPipe } from './filtro-array-impuro.pipe';
 
 
 registerLocaleData (localePT, 'pt');
@@ -20,7 +21,8 @@ registerLocaleData (localePT, 'pt');
     AppComponent,
     ExemplosPipesComponent,
     CamelCasePipe,
-    FiltroArrayPipe
+    FiltroArrayPipe,
+    FiltroArrayImpuroPipe
   ],
   imports: [
     BrowserModule,
