@@ -34,10 +34,9 @@ export class CursosService {
     if (typeof id === 'string') {
       id = parseInt (id, 10);
     }
-    
+
     for (const curso of this.cursos) {
       if (curso.id === id) {
-        console.log (curso);
         return curso;
       }
     }
