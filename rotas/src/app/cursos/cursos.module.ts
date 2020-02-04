@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 import { MaterialModule } from './../material/material.module';
+import { CursosRoutingModule } from './cursos.routing.module';
 
 import { CursosComponent } from './cursos.component';
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
@@ -18,8 +18,8 @@ import { CursosService } from './cursos.service';
   ],
   imports: [
     CommonModule,
-    RouterModule,
-    MaterialModule
+    MaterialModule,
+    CursosRoutingModule
   ],
   providers: [CursosService]
 })
