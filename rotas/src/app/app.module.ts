@@ -11,13 +11,17 @@ import { CursosComponent } from './cursos/cursos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
 
+import { CursosService } from './cursos/cursos.service';
+import { CursoNaoEncontradoComponent } from './curso-nao-encontrado/curso-nao-encontrado.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
     CursosComponent,
-    CursoDetalheComponent
+    CursoDetalheComponent,
+    CursoNaoEncontradoComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { CursoDetalheComponent } from './curso-detalhe/curso-detalhe.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [CursosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

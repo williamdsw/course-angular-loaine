@@ -1,1 +1,5 @@
-<p>cursos works!</p>
+<mat-nav-list>
+    <mat-list-item *ngFor="let curso of cursos">
+        <a [routerLink]="['/curso', curso.id]" matLine> {{ curso.nome }}</a>
+    </mat-list-item>
+</mat-nav-list>

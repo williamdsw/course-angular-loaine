@@ -6,7 +6,8 @@ import {
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatCardModule
 } from '@angular/material';
 
 const MATERIAL_COMPONENTS = [
@@ -16,7 +17,9 @@ const MATERIAL_COMPONENTS = [
   MatButtonModule,
   MatIconModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatListModule,
+  MatCardModule
 ];
 
 @NgModule({

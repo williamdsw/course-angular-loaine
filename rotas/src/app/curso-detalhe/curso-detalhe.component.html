@@ -1,1 +1,4 @@
-<p> Id: {{ id }} </p>
+<mat-card *ngIf="curso" >
+    <mat-card-title> {{ curso?.nome }}</mat-card-title>
+    <mat-card-content> {{ curso?.id }} - {{ curso?.nome }}</mat-card-content>
+</mat-card>
