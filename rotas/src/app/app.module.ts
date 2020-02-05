@@ -8,6 +8,8 @@ import { MaterialModule } from './material/material.module';
 
 import { AuthenticationService } from './login/authentication.service';
 
+import { AuthenticationGuard } from './guards/authentication.guard';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
@@ -23,7 +25,7 @@ import { HomeComponent } from './home/home.component';
     LoginModule,
     AppRoutingModule
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

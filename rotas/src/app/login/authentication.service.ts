@@ -32,4 +32,8 @@ export class AuthenticationService {
       this.mostrarMenuEmitter.emit (false);
     }
   }
+
+  usuarioEstaAutenticado() {
+    return this.usuarioAuthenticado;
+  }
 }
