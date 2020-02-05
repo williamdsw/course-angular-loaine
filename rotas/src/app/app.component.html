@@ -6,18 +6,20 @@
             <a mat-button routerLink="/login" routerLinkActive="active"> Login </a>
             <a mat-button routerLink="" routerLinkActive="active"> Home </a>
             <a mat-button routerLink="/cursos" [queryParams]="{ pagina: 1}" routerLinkActive="active"> Cursos </a>
-            <a mat-button [routerLink]="['curso', idCurso.value]" routerLinkActive="active"> Curso com Id </a>
+            <!-- <a mat-button [routerLink]="['curso', idCurso.value]" routerLinkActive="active"> Curso com Id </a> -->
             <a mat-button routerLink="/alunos" routerLinkActive="active"> Alunos </a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
 
 <!-- permite suporte a rotas -->
-<div class="container">    
+<div class="container">
+    <!-- 
     <mat-form-field>
         <mat-label> Entre com o id do curso </mat-label>
         <input #idCurso matInput>
     </mat-form-field>
+    -->
 
     <router-outlet></router-outlet>
 </div>

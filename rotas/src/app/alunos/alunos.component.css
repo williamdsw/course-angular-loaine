@@ -1,0 +1,22 @@
+mat-grid-tile {
+    background-color: cornsilk;
+}
+
+mat-nav-list {
+    width: 90%;
+}
+
+mat-list-item {
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    margin: 5px;
+}
+
+mat-list-item a {
+    font-weight: bold !important;
+    color: cadetblue;
+}
+
+mat-list-item a:hover {
+    color: darkturquoise;
+}
