@@ -12,7 +12,7 @@
         <!-- nome -->
         <mat-form-field>
             <mat-label> Nome </mat-label>
-            <input name="nome" matInput required [(ngModel)]="aluno.nome">
+            <input name="nome" matInput required [(ngModel)]="aluno.nome" (input)="onInput ();">
         </mat-form-field>
 
         <!-- email -->

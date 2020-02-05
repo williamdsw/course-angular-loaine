@@ -15,13 +15,16 @@ export class AlunoFormularioComponent implements OnInit, OnDestroy {
 
   private aluno: any;
   private inscricao: Subscription;
+  private formMudou: boolean;
 
   // CONSTRUCTOR
 
   constructor(
     private route: ActivatedRoute,
     private alunoService: AlunosService
-  ) { }
+  ) {
+    this.formMudou = false;
+  }
 
   // LIFE CYCLE HOOKS
 
@@ -41,6 +44,22 @@ export class AlunoFormularioComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.inscricao.unsubscribe ();
+  }
+
+  // HELPER FUNCTIONS
+
+  onInput() {
+    this.formMudou = true;
+    console.log ('mudou');
+  }
+
+  podeMudarRota() {
+
+    if (this.formMudou) {
+      confirm ('Tem certeza que deseja sair dessa página?');
+    }
+
+    return true;
   }
 
 }
