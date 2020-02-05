@@ -29,11 +29,12 @@ export class CursoDetalheComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.inscricao = this.route.params.subscribe (
       (params: any) => {
-        this.id = params['id'];
+        const key = 'id';
+        this.id = params[key];
         this.curso = this.cursoService.getCursoById (this.id);
 
         if (this.curso == null) {
-          this.router.navigate (['/curso-nao-encontrado']);
+          this.router.navigate (['/cursos/curso-nao-encontrado']);
         }
       }, error => {
         console.log (error);
