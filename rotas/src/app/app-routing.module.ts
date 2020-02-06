@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CursosGuard } from './guards/cursos.guard';
@@ -21,8 +22,10 @@ const ROUTES: Routes = [
     canActivate: [AuthenticationGuard],
     canLoad: [AuthenticationGuard]
   },
-  { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }, // redireciona para /home
+  { path: '**', component: PaginaNaoEncontradaComponent }, // ou pode redirecionar para login
 ];
 
 @NgModule({
