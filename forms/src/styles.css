@@ -54,6 +54,7 @@ body {
 
 .box .field-full-width {
     width: 100%;
+    margin: 10px auto;
 }
 
 .mat-card {
