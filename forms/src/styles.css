@@ -1,0 +1,62 @@
+@import '@angular/material/prebuilt-themes/purple-green.css';
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    min-width: 100vh;
+}
+
+.app-header {
+    justify-content: start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.app-header span {
+    margin: auto 10px;
+}
+
+.container {
+    height: 100%;
+}
+
+.box {
+    position: absolute;
+    opacity: 1;
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    max-width: 500px;
+    transform: scale(1);
+    margin: 10em auto;
+}
+
+.box mat-card-header {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-weight: bold;
+}
+
+.box mat-card-header mat-card-title {
+    font-size: 25px !important;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.box .field-full-width {
+    width: 100%;
+}
+
+.mat-card {
+    background-color: darkcyan;
+    border: 3px solid turquoise;
+}
