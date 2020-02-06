@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlunosGuard } from './../guards/alunos.guard';
 import { AlunosDeactivateGuard } from '../guards/alunos-deactivate.guard';
 
+import { AlunoDetalheResolver } from '../alunos/guards/aluno-detalhe.resolver';
+
 import { AlunosComponent } from './alunos.component';
 import { AlunoDetalheComponent } from './aluno-detalhe/aluno-detalhe.component';
 import { AlunoFormularioComponent } from './aluno-formulario/aluno-formulario.component';
@@ -14,7 +16,7 @@ const ALUNOS_ROUTES: Routes = [
         canActivateChild: [AlunosGuard],
         children: [ // rotas filhas
             { path: 'novo', component: AlunoFormularioComponent },
-            { path: ':id', component: AlunoDetalheComponent },
+            { path: ':id', component: AlunoDetalheComponent, resolve: { aluno : AlunoDetalheResolver} },
             { path: ':id/editar', component: AlunoFormularioComponent, canDeactivate: [AlunosDeactivateGuard] },
         ]
     },

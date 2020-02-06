@@ -27,17 +27,18 @@ export class AlunoDetalheComponent implements OnInit, OnDestroy {
   // LIFE CYCLE HOOKS
 
   ngOnInit() {
-    this.inscricao = this.route.params.subscribe (
-      (params: any) => {
-        const key = 'id';
-        const id = params[key];
-        this.aluno = this.alunoService.getAlunoById (id);
 
-        if (this.aluno === null) {
-          this.aluno = {};
-        }
+    console.log ('ngOnInit: AlunoDetalheComponent');
+
+    this.inscricao = this.route.data.subscribe (
+      (info) => {
+        console.log ('Recebendo o objeto Aluno do resolver');
+
+        // mesmo nome do alunos.routing do resolve
+        this.aluno = info.aluno;
       },
-      error => { console.log (error); });
+      error => console.log (error)
+    );
   }
 
   ngOnDestroy() {
