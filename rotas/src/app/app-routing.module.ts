@@ -12,12 +12,14 @@ const ROUTES: Routes = [
     path: 'cursos',
     loadChildren: () => import ('./cursos/cursos.module').then (mod => mod.CursosModule),
     canActivate: [AuthenticationGuard], // verifica rota base
-    canActivateChild: [CursosGuard] // verifica rotas filhas
+    canActivateChild: [CursosGuard], // verifica rotas filhas
+    canLoad: [AuthenticationGuard]
   },
   {
     path: 'alunos',
-    loadChildren: () => import ('./alunos/alunos.module').then (mod => mod.AlunosModule), 
+    loadChildren: () => import ('./alunos/alunos.module').then (mod => mod.AlunosModule),
     canActivate: [AuthenticationGuard],
+    canLoad: [AuthenticationGuard]
   },
   { path: '', component: HomeComponent, canActivate: [AuthenticationGuard] },
   { path: 'login', component: LoginComponent },
