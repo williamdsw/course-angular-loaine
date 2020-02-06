@@ -14,13 +14,13 @@
                 <!-- nome -->
                 <mat-form-field class="field-full-width" color="accent">
                     <mat-label> Nome: </mat-label>
-                    <input type="text" name="nome" required matInput [ngModel]="usuario.nome">
+                    <input type="text" name="nome" matInput required [ngModel]="usuario.nome">
                 </mat-form-field>
 
                 <!-- email -->
                 <mat-form-field class="field-full-width" color="accent">
                     <mat-label> Email: </mat-label>
-                    <input type="email" name="email" required matInput [ngModel]="usuario.email">
+                    <input type="email" name="email" matInput required email [ngModel]="usuario.email">
                 </mat-form-field>
 
                 <mat-card-actions align="end">
