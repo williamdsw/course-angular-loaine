@@ -34,7 +34,7 @@ body {
     opacity: 1;
     padding: 60px 50px 40px 50px;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     transform: scale(1);
     margin: 10em auto;
 }
@@ -55,6 +55,10 @@ body {
 .box .field-full-width {
     width: 100%;
     margin: 10px auto;
+}
+
+.table-full-width {
+    width: 100%;
 }
 
 .mat-card {
