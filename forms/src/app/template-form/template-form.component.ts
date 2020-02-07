@@ -17,10 +17,13 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
   };
 
   private inscricao: Subscription;
+  private postUrl: string;
 
   // CONSTRUCTOR
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.postUrl = 'https://httpbin.org/post';
+  }
 
   // LIFE CYCLE HOOKS
 
@@ -35,7 +38,9 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
 
   onSubmit(form) {
     console.log(form);
-    console.log(this.usuario);
+    this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (form.value)).subscribe (
+      response => { console.log (response); },
+      error => { console.log (error); });
   }
 
   consultaCEP(cep: string, form) {
@@ -57,21 +62,6 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
   populaDadosForm(dados, formulario) {
 
     if (!('erro' in dados)) {
-      /*
-      formulario.setValue ({
-        nome: formulario.value.nome,
-        email: formulario.value.email,
-        endereco: {
-          rua: dados.logradouro,
-          cep: dados.cep,
-          numero: formulario.value.endereco.numero,
-          complemento: dados.complemento,
-          bairro: dados.bairro,
-          cidade: dados.localidade,
-        }
-      });
-      */
-
       formulario.form.patchValue({
         endereco: {
           rua: dados.logradouro,
