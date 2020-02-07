@@ -14,15 +14,30 @@
                 <!-- nome -->
                 <mat-form-field class="field-full-width" color="accent">
                     <mat-label> Nome: </mat-label>
-                    <input type="text" name="nome" #inputNome matInput required [ngModel]="usuario.nome">
-                    <mat-error> Informe seu nome! </mat-error>
+
+                    <input type="text" name="nome" required
+                           #inputNome="ngModel" matInput [ngModel]="usuario.nome">
+
+                    <mat-error *ngIf="!inputNome.valid && inputNome.touched"> 
+                        Informe seu nome! 
+                    </mat-error>
                 </mat-form-field>
 
                 <!-- email -->
                 <mat-form-field class="field-full-width" color="accent">
                     <mat-label> Email: </mat-label>
-                    <input type="email" name="email" #inputEmail matInput required email [ngModel]="usuario.email">
-                    <mat-error> Informe um email válido! </mat-error>
+
+                    <input type="email" name="email" required
+                           #inputEmail="ngModel" matInput email 
+                           [ngModel]="usuario.email">
+
+                    <mat-error *ngIf="!inputEmail.value" > 
+                        Email é obrigatório!
+                    </mat-error>
+
+                    <mat-error *ngIf="inputEmail.value && !inputEmail.valid" > 
+                        Insira um email válido!
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-card-actions align="end">
