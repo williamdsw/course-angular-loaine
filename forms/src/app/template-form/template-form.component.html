@@ -16,9 +16,7 @@
                 
                             <input type="text" name="nome" required #inputNome="ngModel" matInput [ngModel]="usuario.nome">
                 
-                            <mat-error *ngIf="!inputNome.valid && inputNome.touched">
-                                Informe seu nome!
-                            </mat-error>
+                            <mat-error> Informe seu nome! </mat-error>
                         </mat-form-field>
                 
                         <!-- email -->
@@ -97,15 +95,8 @@
                                 </td>
                             </tr>
                         </table>
-                
                     </mat-tab>
-
-                  
-
                 </mat-tab-group>
-
-
-                
 
                 <div align="end" class="field-full-width">
                     <button mat-flat-button color="warn" [disabled]="meuForm.invalid"> Enviar </button>    
