@@ -5,11 +5,7 @@
         </mat-card-header>
 
         <mat-card-content>
-            <!-- ngForm = ajude-nos a gerenciar o formulario -->
-            <!-- (ngSubmit) = binding de funcao que sera executada no submit -->
             <form #meuForm="ngForm" (ngSubmit)="onSubmit (meuForm);">
-
-                <!-- ngModel = adiciona campo ao ngForm -->
 
                 <!-- nome -->
                 <mat-form-field class="field-full-width" color="accent">
@@ -40,10 +36,17 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-card-actions align="end">
+                <div align="end" class="field-full-width">
                     <button mat-flat-button color="warn" [disabled]="meuForm.invalid"> Enviar </button>    
-                </mat-card-actions>
+                </div>
             </form>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- output -->
+    <mat-card class="box">
+        <mat-card-content>
+            <app-form-debug [form]="meuForm"></app-form-debug>
         </mat-card-content>
     </mat-card>
 </div>

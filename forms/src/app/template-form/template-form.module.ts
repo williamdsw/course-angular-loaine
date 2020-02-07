@@ -5,10 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './../angular-material/angular-material.module';
 
 import { TemplateFormComponent } from './template-form.component';
+import { FormDebugComponent } from '../form-debug/form-debug.component';
 
 @NgModule({
   declarations: [
-    TemplateFormComponent
+    TemplateFormComponent,
+    FormDebugComponent
   ],
   imports: [
     CommonModule,
