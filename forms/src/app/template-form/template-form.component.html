@@ -47,7 +47,7 @@
                                             <mat-label> CEP: </mat-label>
                                             <input type="text" name="cep" required 
                                                    #inputCEP="ngModel" matInput [ngModel]=""
-                                                   (blur)="consultaCEP (inputCEP.value);">
+                                                   (blur)="consultaCEP (inputCEP.value, meuForm);">
                                             <mat-error> Informe o CEP </mat-error>
                                         </mat-form-field>
                                     </td>
