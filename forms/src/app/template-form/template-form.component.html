@@ -37,64 +37,68 @@
 
                     <mat-tab label="Endereço">
 
-                        <table class="table-full-width">
-                            <tr>
-                                <!-- CEP -->
-                                <td>
-                                    <mat-form-field class="field-full-width" color="accent">
-                                        <mat-label> CEP: </mat-label>
-                                        <input type="text" name="cep" required #inputCEP="ngModel" matInput [ngModel]="">
-                                        <mat-error> Informe o CEP </mat-error>
-                                    </mat-form-field>
-                                </td>
+                        <!-- ngModelGroup = agrupa todos os campos em um objeto so -->
+                        <div ngModelGroup="endereco">
+                            <table class="table-full-width">
+                                <tr>
+                                    <!-- CEP -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> CEP: </mat-label>
+                                            <input type="text" name="cep" required #inputCEP="ngModel" matInput [ngModel]="">
+                                            <mat-error> Informe o CEP </mat-error>
+                                        </mat-form-field>
+                                    </td>
 
-                                <!-- numero -->
-                                <td>
-                                    <mat-form-field class="field-full-width" color="accent">
-                                        <mat-label> Número: </mat-label>
-                                        <input type="text" name="numero" required #inputNumero="ngModel" matInput [ngModel]="">
-                                        <mat-error> Informe o número do local </mat-error>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                        </table>
+                                    <!-- numero -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Número: </mat-label>
+                                            <input type="text" name="numero" required #inputNumero="ngModel" matInput [ngModel]="">
+                                            <mat-error> Informe o número do local </mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
 
-                        <!-- complemento -->
-                        <mat-form-field class="field-full-width" color="accent">
-                            <mat-label> Complemento: </mat-label>
-                            <input type="text" name="complemento" #inputComplemento="ngModel" matInput [ngModel]="">
-                        </mat-form-field>
+                            <!-- complemento -->
+                            <mat-form-field class="field-full-width" color="accent">
+                                <mat-label> Complemento: </mat-label>
+                                <input type="text" name="complemento" #inputComplemento="ngModel" matInput [ngModel]="">
+                            </mat-form-field>
 
-                        <table class="table-full-width">
-                            <tr>
-                                <!-- rua -->
-                                <td>
-                                    <mat-form-field class="field-full-width" color="accent">
-                                        <mat-label> Rua: </mat-label>
-                                        <input type="text" name="rua" required #inputRua="ngModel" matInput [ngModel]="">
-                                        <mat-error> Informe a rua </mat-error>
-                                    </mat-form-field>
-                                </td>
+                            <table class="table-full-width">
+                                <tr>
+                                    <!-- rua -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Rua: </mat-label>
+                                            <input type="text" name="rua" required #inputRua="ngModel" matInput [ngModel]="">
+                                            <mat-error> Informe a rua </mat-error>
+                                        </mat-form-field>
+                                    </td>
 
-                                <!-- bairro -->
-                                <td>
-                                    <mat-form-field class="field-full-width" color="accent">
-                                        <mat-label> Bairro: </mat-label>
-                                        <input type="text" name="bairro" required #inputBairro="ngModel" matInput [ngModel]="">
-                                        <mat-error> Informe o bairro </mat-error>
-                                    </mat-form-field>
-                                </td>
+                                    <!-- bairro -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Bairro: </mat-label>
+                                            <input type="text" name="bairro" required #inputBairro="ngModel" matInput [ngModel]="">
+                                            <mat-error> Informe o bairro </mat-error>
+                                        </mat-form-field>
+                                    </td>
 
-                                <!-- cidade -->
-                                <td>
-                                    <mat-form-field class="field-full-width" color="accent">
-                                        <mat-label> Cidade: </mat-label>
-                                        <input type="text" name="cidade" required #inputCidade="ngModel" matInput [ngModel]="">
-                                        <mat-error> Informe a cidade </mat-error>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
-                        </table>
+                                    <!-- cidade -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Cidade: </mat-label>
+                                            <input type="text" name="cidade" required #inputCidade="ngModel" matInput [ngModel]="">
+                                            <mat-error> Informe a cidade </mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
                     </mat-tab>
                 </mat-tab-group>
 
