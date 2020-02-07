@@ -41,7 +41,7 @@
                 </mat-form-field>
 
                 <mat-card-actions align="end">
-                    <button mat-flat-button color="warn"> Enviar </button>    
+                    <button mat-flat-button color="warn" [disabled]="meuForm.invalid"> Enviar </button>    
                 </mat-card-actions>
             </form>
         </mat-card-content>
