@@ -45,7 +45,9 @@
                                     <td>
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> CEP: </mat-label>
-                                            <input type="text" name="cep" required #inputCEP="ngModel" matInput [ngModel]="">
+                                            <input type="text" name="cep" required 
+                                                   #inputCEP="ngModel" matInput [ngModel]=""
+                                                   (blur)="consultaCEP (inputCEP.value);">
                                             <mat-error> Informe o CEP </mat-error>
                                         </mat-form-field>
                                     </td>
