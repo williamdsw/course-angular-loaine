@@ -1,1 +1,47 @@
-<p>data-form works!</p>
+<div>
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title> Data Form </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+
+            <!-- [formGroup] = Linkar form do HTML com FormGroup -->
+            <!-- formControlName = Utilizar para cada campo -->
+            <form [formGroup]="formulario">
+
+                <mat-tab-group backgroundColor="accent" color="warn">
+                    <mat-tab label="Login">
+                
+                        <!-- nome -->
+                        <mat-form-field class="field-full-width" color="accent">
+                            <mat-label> Nome: </mat-label>
+                
+                            <input type="text" formControlName="nome" required matInput>
+                
+                        </mat-form-field>
+                
+                        <!-- email -->
+                        <mat-form-field class="field-full-width" color="accent">
+                            <mat-label> Email: </mat-label>
+                
+                            <input type="email" formControlName="email" required matInput email>
+                        </mat-form-field>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+                <div align="end" class="field-full-width">
+                    <button mat-flat-button color="warn"> Enviar </button>    
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+
+    <!-- output -->
+    <mat-card class="box">
+        <mat-card-content>
+            <app-form-debug [form]="formulario"></app-form-debug>
+        </mat-card-content>
+    </mat-card>
+</div>

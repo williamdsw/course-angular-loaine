@@ -28,6 +28,7 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
   // LIFE CYCLE HOOKS
 
   ngOnInit() {
+    this.inscricao = new Subscription ();
   }
 
   ngOnDestroy() {

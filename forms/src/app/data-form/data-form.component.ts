@@ -15,10 +15,10 @@ export class DataFormComponent implements OnInit {
   ngOnInit() {
 
     // 1a forma
-    this.formulario = new FormGroup ({
+    /*this.formulario = new FormGroup ({
       nome: new FormControl (null),
       email: new FormControl (null)
-    });
+    });*/
 
     // 2a forma
     this.formulario = this.formBuilder.group ({
