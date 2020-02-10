@@ -16,16 +16,16 @@
                         <!-- nome -->
                         <mat-form-field class="field-full-width" color="accent">
                             <mat-label> Nome: </mat-label>
-                
-                            <input type="text" formControlName="nome" required matInput>
-                
+                            <input type="text" formControlName="nome" matInput>
+                            <mat-error> Nome é obrigatório </mat-error>
                         </mat-form-field>
                 
                         <!-- email -->
                         <mat-form-field class="field-full-width" color="accent">
                             <mat-label> Email: </mat-label>
-                
-                            <input type="email" formControlName="email" required matInput email>
+                            <input type="email" formControlName="email" matInput>
+                            <mat-error *ngIf="verificaValidTouched ('email');"> Email é obrigatório </mat-error>
+                            <mat-error *ngIf="verificaEmailInvalido ();"> Digite um email válido </mat-error>
                         </mat-form-field>
                     </mat-tab>
 

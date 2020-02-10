@@ -67,4 +67,17 @@ export class DataFormComponent implements OnInit, OnDestroy {
     this.formulario.reset ();
   }
 
+  verificaValidTouched(campo) {
+    campo = this.formulario.get (campo);
+    return !campo.valid && campo.touched;
+  }
+
+  verificaEmailInvalido() {
+    const email = this.formulario.get ('email');
+    if (email.errors) {
+      const key = 'email';
+      return email.errors[key];
+    }
+  }
+
 }
