@@ -3,6 +3,10 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
+import { DropdownService } from './../shared/services/dropdown.service';
+
+import { Estado } from './../shared/models/estado';
+
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
@@ -15,12 +19,14 @@ export class DataFormComponent implements OnInit, OnDestroy {
   formulario: FormGroup;
   private inscricao: Subscription;
   private postUrl: string;
+  estados: Estado[] = [];
 
   // CONSTRUCTOR
 
   constructor(
     private formBuilder: FormBuilder,
-    private httpClient: HttpClient) {
+    private httpClient: HttpClient,
+    private dropdownService: DropdownService) {
 
     this.postUrl = 'https://httpbin.org/post';
   }
@@ -30,6 +36,11 @@ export class DataFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.inscricao = new Subscription();
+
+    this.dropdownService.getEstadosBr ().subscribe (
+      response => { this.estados = response; console.log (this.estados); },
+      error => { console.log (error); }
+    );
 
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
