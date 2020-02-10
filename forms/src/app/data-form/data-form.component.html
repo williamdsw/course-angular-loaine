@@ -29,6 +29,78 @@
                         </mat-form-field>
                     </mat-tab>
 
+                    <mat-tab label="Endereço">
+
+                        <div >
+                            <table class="table-full-width">
+                                <tr>
+                                    <!-- CEP -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> CEP: </mat-label>
+                                            <input type="text" matInput formControlName="cep">
+                                            <mat-error> Informe o CEP </mat-error>
+                                        </mat-form-field>
+                                    </td>
+
+                                    <!-- numero -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Número: </mat-label>
+                                            <input type="text" matInput formControlName="numero">
+                                            <mat-error> Informe o número do local </mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!-- complemento -->
+                            <mat-form-field class="field-full-width" color="accent">
+                                <mat-label> Complemento: </mat-label>
+                                <input type="text" matInput formControlName="complemento">
+                            </mat-form-field>
+
+                            <!-- rua -->
+                            <mat-form-field class="field-full-width" color="accent">
+                                <mat-label> Rua: </mat-label>
+                                <input type="text" matInput formControlName="rua">
+                                <mat-error> Informe a rua </mat-error>
+                            </mat-form-field>
+
+                            <table class="table-full-width">
+                                <tr>
+                                    <!-- bairro -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Bairro: </mat-label>
+                                            <input type="text" matInput formControlName="bairro">
+                                            <mat-error> Informe o bairro </mat-error>
+                                        </mat-form-field>
+                                    </td>
+
+                                    <!-- cidade -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Cidade: </mat-label>
+                                            <input type="text" matInput formControlName="cidade">
+                                            <mat-error> Informe a cidade </mat-error>
+                                        </mat-form-field>
+                                    </td>
+
+                                    <!-- estado -->
+                                    <td>
+                                        <mat-form-field class="field-full-width" color="accent">
+                                            <mat-label> Estado: </mat-label>
+                                            <input type="text" matInput formControlName="estado">
+                                            <mat-error> Informe o estado </mat-error>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </mat-tab>
+
                 </mat-tab-group>
 
                 <div class="field-full-width">

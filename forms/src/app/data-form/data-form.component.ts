@@ -32,15 +32,15 @@ export class DataFormComponent implements OnInit, OnDestroy {
     this.inscricao = new Subscription();
 
     this.formulario = this.formBuilder.group({
-      nome: [null, [
-        Validators.required,
-        Validators.minLength (3),
-        Validators.maxLength (20),
-      ]],
-      email: [null, [
-        Validators.required,
-        Validators.email
-      ]],
+      nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
+      email: [null, [ Validators.required, Validators.email ]],
+      cep: [null, [ Validators.required ]],
+      numero: [null, [ Validators.required ]],
+      complemento: [null],
+      rua: [null, [ Validators.required ]],
+      bairro: [null, [ Validators.required ]],
+      cidade: [null, [ Validators.required ]],
+      estado: [null, [ Validators.required ]],
     });
 
   }
@@ -67,9 +67,9 @@ export class DataFormComponent implements OnInit, OnDestroy {
     this.formulario.reset ();
   }
 
-  verificaValidTouched(campo) {
-    campo = this.formulario.get (campo);
-    return !campo.valid && campo.touched;
+  verificaValidTouched(campo: string) {
+    const formCampo = this.formulario.get (campo);
+    return !formCampo.valid;
   }
 
   verificaEmailInvalido() {
