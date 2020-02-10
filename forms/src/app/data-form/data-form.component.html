@@ -8,7 +8,7 @@
 
             <!-- [formGroup] = Linkar form do HTML com FormGroup -->
             <!-- formControlName = Utilizar para cada campo -->
-            <form [formGroup]="formulario">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit ();">
 
                 <mat-tab-group backgroundColor="accent" color="warn">
                     <mat-tab label="Login">
