@@ -83,4 +83,54 @@ export class DataFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  consultaCEP() {
+    let cep = this.formulario.get ('endereco.cep').value;
+    cep = cep.replace(/\D/g, '');
+
+    if (cep !== '') {
+      const VALIDA_CEP = /^[0-9]{8}$/;
+      if (VALIDA_CEP.test (cep)) {
+
+        this.resetaDadosFormulario ();
+
+        this.inscricao = this.httpClient.get (`//viacep.com.br/ws/${cep}/json`).subscribe (
+          response => { this.populaDadosForm (response); },
+          error => { console.log (error); });
+      }
+    }
+  }
+
+  populaDadosForm(dados) {
+
+    if (!('erro' in dados)) {
+      this.formulario.patchValue({
+        endereco: {
+          rua: dados.logradouro,
+          cep: dados.cep,
+          complemento: dados.complemento,
+          bairro: dados.bairro,
+          cidade: dados.localidade,
+          estado: dados.uf,
+        }
+      });
+
+      this.formulario.get ('nome').setValue ('Jim');
+      this.formulario.get ('email').setValue ('jim@email.com');
+    } else {
+      this.resetaDadosFormulario ();
+      alert ('CEP não encontrado!');
+    }
+  }
+
+  resetaDadosFormulario() {
+    this.formulario.patchValue ({
+      endereco: {
+        rua: null,
+        complemento: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    });
+  }
 }

@@ -73,6 +73,7 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
           complemento: dados.complemento,
           bairro: dados.bairro,
           cidade: dados.localidade,
+          estado: dados.uf
         }
       });
     } else {
@@ -87,7 +88,8 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
         rua: null,
         complemento: null,
         bairro: null,
-        cidade: null
+        cidade: null,
+        estado: null
       }
     });
   }
