@@ -55,8 +55,16 @@ export class DataFormComponent implements OnInit, OnDestroy {
     console.log (this.formulario);
 
     this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (this.formulario.value)).subscribe (
-      response => { console.log (response); },
-      error => { console.log (error); });
+      response => {
+        console.log (response);
+
+        this.resetar ();
+      },
+      error => { alert ('erro'); });
+  }
+
+  resetar() {
+    this.formulario.reset ();
   }
 
 }

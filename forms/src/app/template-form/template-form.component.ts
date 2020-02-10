@@ -37,10 +37,13 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
 
   // HELPER FUNCTIONS
 
-  onSubmit(form) {
-    console.log(form);
-    this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (form.value)).subscribe (
-      response => { console.log (response); },
+  onSubmit(formulario) {
+    console.log(formulario);
+    this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (formulario.value)).subscribe (
+      response => {
+        console.log (response);
+        formulario.form.reset ();
+      },
       error => { console.log (error); });
   }
 
