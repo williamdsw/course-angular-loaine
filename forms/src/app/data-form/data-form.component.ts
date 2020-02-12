@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
 import { DropdownService } from './../shared/services/dropdown.service';
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 import { Estado } from './../shared/models/estado';
 
@@ -26,7 +27,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private httpClient: HttpClient,
-    private dropdownService: DropdownService) {
+    private dropdownService: DropdownService,
+    private consultaCepService: ConsultaCepService) {
 
     this.postUrl = 'https://httpbin.org/post';
   }
@@ -99,19 +101,13 @@ export class DataFormComponent implements OnInit, OnDestroy {
   }
 
   consultaCEP() {
-    let cep = this.formulario.get ('endereco.cep').value;
-    cep = cep.replace(/\D/g, '');
+    const cep = this.formulario.get ('endereco.cep').value;
 
-    if (cep !== '') {
-      const VALIDA_CEP = /^[0-9]{8}$/;
-      if (VALIDA_CEP.test (cep)) {
-
-        this.resetaDadosFormulario ();
-
-        this.inscricao = this.httpClient.get (`//viacep.com.br/ws/${cep}/json`).subscribe (
-          response => { this.populaDadosForm (response); },
-          error => { console.log (error); });
-      }
+    if (cep != null && cep !== '') {
+      this.inscricao = this.consultaCepService.consultaCEP (cep).subscribe (
+        response => { this.populaDadosForm (response); },
+        error => { console.log (error); }
+      )
     }
   }
 
