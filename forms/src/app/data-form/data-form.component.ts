@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { DropdownService } from './../shared/services/dropdown.service';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -20,7 +20,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
   formulario: FormGroup;
   private inscricao: Subscription;
   private postUrl: string;
-  estados: Estado[] = [];
+  estados: Observable<Estado[]>;
 
   // CONSTRUCTOR
 
@@ -39,11 +39,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
     this.inscricao = new Subscription();
 
-    this.dropdownService.getEstadosBr ().subscribe (
-      response => { this.estados = response; console.log (this.estados); },
-      error => { console.log (error); }
-    );
-
+    this.estados = this.dropdownService.getEstadosBr ();
+    
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
       email: [null, [ Validators.required, Validators.email ]],

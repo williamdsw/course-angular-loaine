@@ -88,7 +88,12 @@
                                     <td>
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Estado: </mat-label>
-                                            <input type="text" matInput formControlName="estado">
+                                            <mat-select formControlName="estado">
+                                                <!-- async = faz o subscribe e unsubscribe o observable 'estados' -->
+                                                <mat-option *ngFor="let estado of estados | async;" [value]="estado.sigla">
+                                                    {{ estado.nome }}
+                                                </mat-option>
+                                            </mat-select>
                                             <mat-error> Informe o estado </mat-error>
                                         </mat-form-field>
                                     </td>
