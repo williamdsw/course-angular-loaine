@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, Observable } from 'rxjs';
 
@@ -9,6 +9,7 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { Estado } from './../shared/models/estado';
 import { Cargo } from '../shared/models/cargos';
 import { Tecnologia } from '../shared/models/tecnologias';
+import { FormValidations } from '../shared/form-validations';
 
 @Component({
   selector: 'app-data-form',
@@ -193,6 +194,6 @@ export class DataFormComponent implements OnInit, OnDestroy {
   buildFrameworks() {
 
     const values = this.frameworks.map (value => new FormControl (false));
-    return this.formBuilder.array (values);
+    return this.formBuilder.array (values, FormValidations.requiredMinCheckbox (2));
   }
 }

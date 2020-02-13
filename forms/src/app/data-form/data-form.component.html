@@ -133,6 +133,7 @@
                             <div formArrayName="frameworks" *ngFor="let item of formulario.get ('frameworks').controls; let i = index;">
                                 <mat-checkbox [formControlName]="i"> {{ frameworks[i] }} </mat-checkbox>    
                             </div>
+                            <mat-error *ngIf="verificaValidTouched ('frameworks');"> Selecione pelo menos 2 opçoes </mat-error>
                         </div>
                 
                         <!-- newsletter -->
