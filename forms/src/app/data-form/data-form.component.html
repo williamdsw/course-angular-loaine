@@ -126,6 +126,14 @@
                             </mat-select>
                             <mat-error> Pelo menos uma tecnologia é obrigatória </mat-error>
                         </mat-form-field>
+
+                        <!-- frameworks -->
+                        <div class="field-full-width" color="accent">
+                            <mat-label> Frameworks </mat-label>
+                            <div formArrayName="frameworks" *ngFor="let item of formulario.get ('frameworks').controls; let i = index;">
+                                <mat-checkbox [formControlName]="i"> {{ frameworks[i] }} </mat-checkbox>    
+                            </div>
+                        </div>
                 
                         <!-- newsletter -->
                         <div class="field-full-width" color="accent">

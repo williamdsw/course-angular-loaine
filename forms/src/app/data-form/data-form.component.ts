@@ -26,6 +26,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
   cargos: Cargo[];
   tecnologias: Tecnologia[];
   newsletter: any[];
+  frameworks: string[] = ['Angular', 'React', 'Vue', 'Sencha'];
 
   // CONSTRUCTOR
 
@@ -66,7 +67,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
       cargo: [null],
       tecnologias: [null],
       newsletter: [null],
-      termos: [null, Validators.requiredTrue]
+      termos: [null, Validators.requiredTrue],
+      frameworks: this.buildFrameworks ()
     });
 
   }
@@ -78,10 +80,19 @@ export class DataFormComponent implements OnInit, OnDestroy {
   // HELPER FUNCTIONS
 
   onSubmit() {
-    console.log (this.formulario);
+
+    // Object.assign (...) = Copia um objeto para outro
+    let valueSubmit = Object.assign ({}, this.formulario.value);
+    valueSubmit = Object.assign (valueSubmit, {
+      frameworks: valueSubmit.frameworks
+                             .map ((value, index) => value ? this.frameworks[index] : null)
+                             .filter (value => value != null)
+    });
+
+    console.log (valueSubmit);
 
     if (this.formulario.valid) {
-      this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (this.formulario.value)).subscribe (
+      this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (valueSubmit)).subscribe (
         response => {
           console.log (response);
           this.resetar ();
@@ -99,11 +110,6 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   verificaValidTouched(campo: string) {
     const formCampo = this.formulario.get (campo);
-
-    if (campo === 'termos') {
-      console.log (formCampo);
-    }
-    
     return !formCampo.valid;
   }
 
@@ -182,5 +188,11 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   setarTecnologias() {
     this.formulario.get('tecnologias').setValue (['java', 'javascript', 'php']);
+  }
+
+  buildFrameworks() {
+
+    const values = this.frameworks.map (value => new FormControl (false));
+    return this.formBuilder.array (values);
   }
 }
