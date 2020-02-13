@@ -56,7 +56,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
       email: [null, [ Validators.required, Validators.email ]],
 
       endereco: this.formBuilder.group ({
-        cep: [null, [ Validators.required ]],
+        cep: [null, [ Validators.required, FormValidations.cepValidator ]],
         numero: [null, [ Validators.required ]],
         complemento: [null],
         rua: [null, [ Validators.required ]],
@@ -112,6 +112,16 @@ export class DataFormComponent implements OnInit, OnDestroy {
   verificaValidTouched(campo: string) {
     const formCampo = this.formulario.get (campo);
     return !formCampo.valid;
+  }
+
+  verificaTemError(campo: string, error: string) {
+
+    if (campo && error) {
+      const formCampo = this.formulario.get (campo);
+      return formCampo.hasError (error);
+    }
+
+    return false;
   }
 
   verificaEmailInvalido() {

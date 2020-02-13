@@ -37,6 +37,7 @@
                                             <mat-label> CEP: </mat-label>
                                             <input type="text" matInput formControlName="cep" (blur)="consultaCEP ();">
                                             <mat-error> Informe o CEP </mat-error>
+                                            <mat-error *ngIf="verificaTemError ('endereco.cep', 'cepInvalido');"> CEP é inválido </mat-error>
                                         </mat-form-field>
                                     </td>
 
