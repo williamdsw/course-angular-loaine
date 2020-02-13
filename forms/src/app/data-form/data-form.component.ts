@@ -8,6 +8,7 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 import { Estado } from './../shared/models/estado';
 import { Cargo } from '../shared/models/cargos';
+import { Tecnologia } from '../shared/models/tecnologias';
 
 @Component({
   selector: 'app-data-form',
@@ -23,6 +24,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
   private postUrl: string;
   estados: Observable<Estado[]>;
   cargos: Cargo[];
+  tecnologias: Tecnologia[];
 
   // CONSTRUCTOR
 
@@ -43,8 +45,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
     this.estados = this.dropdownService.getEstadosBr ();
     this.cargos = this.dropdownService.getCargos ();
-
-    console.log (this.cargos);
+    this.tecnologias = this.dropdownService.getTecnologias ();
 
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
@@ -60,7 +61,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
         estado: [null, [ Validators.required ]],
       }),
 
-      cargo: [null]
+      cargo: [null],
+      tecnologias: [null]
     });
 
   }
@@ -167,5 +169,9 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   compararCargos(cargo1: Cargo, cargo2: Cargo) {
     return cargo1 && cargo2 ? (cargo1.nome === cargo2.nome && cargo1.nivel === cargo2.nivel) : cargo1 === cargo2;
+  }
+
+  setarTecnologias() {
+    this.formulario.get('tecnologias').setValue (['java', 'javascript', 'php']);
   }
 }
