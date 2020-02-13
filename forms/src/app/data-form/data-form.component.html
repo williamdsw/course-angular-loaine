@@ -103,10 +103,26 @@
                         </div>
                     </mat-tab>
 
+                    <mat-tab label="Outros">
+                
+                        <!-- cargo -->
+                        <mat-form-field class="field-full-width" color="accent">
+                            <mat-label> Cargo: </mat-label>
+                            <mat-select formControlName="cargo" [compareWith]="compararCargos"> 
+                                <mat-option *ngFor="let cargo of cargos;" [value]="cargo">
+                                    {{ cargo.descricao }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error> Cargo é obrigatório </mat-error>
+                        </mat-form-field>
+                
+                    </mat-tab>
+
                 </mat-tab-group>
 
                 <div class="field-full-width">
-                    <button mat-flat-button (click)="resetar ();"> Cancelar </button>    
+                    <button mat-flat-button (click)="resetar ();"> Cancelar </button>
+                    <button mat-flat-button (click)="setarCargo ();"> Cargo </button>    
                     <button mat-flat-button color="warn"> Enviar </button>    
                 </div>
             </form>

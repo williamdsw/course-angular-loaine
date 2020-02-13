@@ -7,6 +7,7 @@ import { DropdownService } from './../shared/services/dropdown.service';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 import { Estado } from './../shared/models/estado';
+import { Cargo } from '../shared/models/cargos';
 
 @Component({
   selector: 'app-data-form',
@@ -21,6 +22,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
   private inscricao: Subscription;
   private postUrl: string;
   estados: Observable<Estado[]>;
+  cargos: Cargo[];
 
   // CONSTRUCTOR
 
@@ -40,7 +42,10 @@ export class DataFormComponent implements OnInit, OnDestroy {
     this.inscricao = new Subscription();
 
     this.estados = this.dropdownService.getEstadosBr ();
-    
+    this.cargos = this.dropdownService.getCargos ();
+
+    console.log (this.cargos);
+
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
       email: [null, [ Validators.required, Validators.email ]],
@@ -53,7 +58,9 @@ export class DataFormComponent implements OnInit, OnDestroy {
         bairro: [null, [ Validators.required ]],
         cidade: [null, [ Validators.required ]],
         estado: [null, [ Validators.required ]],
-      })
+      }),
+
+      cargo: [null]
     });
 
   }
@@ -144,7 +151,6 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   verificaValidacoesForm(formGroup: FormGroup) {
     Object.keys (formGroup.controls).forEach (campo => {
-      console.log (campo);
       const controle = formGroup.get (campo);
       controle.markAsDirty ();
 
@@ -152,5 +158,14 @@ export class DataFormComponent implements OnInit, OnDestroy {
         this.verificaValidacoesForm (controle);
       }
     });
+  }
+
+  setarCargo() {
+    const cargo: Cargo = { nome: 'Dev', nivel: 'Pleno', descricao: 'Dev Pl'};
+    this.formulario.get('cargo').setValue (cargo);
+  }
+
+  compararCargos(cargo1: Cargo, cargo2: Cargo) {
+    return cargo1 && cargo2 ? (cargo1.nome === cargo2.nome && cargo1.nivel === cargo2.nivel) : cargo1 === cargo2;
   }
 }
