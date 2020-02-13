@@ -25,6 +25,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
   estados: Observable<Estado[]>;
   cargos: Cargo[];
   tecnologias: Tecnologia[];
+  newsletter: any[];
 
   // CONSTRUCTOR
 
@@ -46,6 +47,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
     this.estados = this.dropdownService.getEstadosBr ();
     this.cargos = this.dropdownService.getCargos ();
     this.tecnologias = this.dropdownService.getTecnologias ();
+    this.newsletter = this.dropdownService.getNewsletter ();
 
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
@@ -62,7 +64,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
       }),
 
       cargo: [null],
-      tecnologias: [null]
+      tecnologias: [null],
+      newsletter: [null]
     });
 
   }

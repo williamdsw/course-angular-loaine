@@ -23,6 +23,11 @@ export class DropdownService {
     { nome: 'ruby', descricao: 'Ruby' },
   ];
 
+  private newsletter: any[] = [
+    { valor: 'sim', descricao: 'Sim' },
+    { valor: 'nao', descricao: 'Não' },
+  ];
+
   constructor(private httpClient: HttpClient) { }
 
   getEstadosBr() {
@@ -35,5 +40,9 @@ export class DropdownService {
 
   getTecnologias(): Tecnologia[] {
     return this.tecnologias;
+  }
+
+  getNewsletter() {
+    return this.newsletter;
   }
 }

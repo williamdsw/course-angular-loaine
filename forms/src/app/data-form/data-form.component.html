@@ -127,6 +127,14 @@
                             <mat-error> Pelo menos uma tecnologia é obrigatória </mat-error>
                         </mat-form-field>
                 
+                        <!-- newsletter -->
+                        <div class="field-full-width" color="accent">
+                            <mat-label> Deseja receber a Newsletter? </mat-label>
+                            <mat-radio-group aria-label="Deseja receber a Newsletter" formControlName="newsletter">
+                                <mat-radio-button *ngFor="let letter of newsletter;" [value]="letter.valor"> {{ letter.descricao }} </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                
                     </mat-tab>
 
                 </mat-tab-group>
