@@ -23,6 +23,9 @@
                             <input type="email" formControlName="email" matInput>
                             <mat-error *ngIf="verificaValidTouched ('email');"> Email é obrigatório </mat-error>
                             <mat-error *ngIf="verificaEmailInvalido ();"> Digite um email válido </mat-error>
+                            <mat-error *ngIf="formulario.get ('email').status === 'PENDING'"> Validando email... </mat-error>
+                            <mat-error *ngIf="formulario.get ('email').status === 'VALID'"> Email válido! </mat-error>
+                            <mat-error *ngIf="verificaTemError ('email', 'emailInvalido')"> Email já cadastrado! </mat-error>
                         </mat-form-field>
                 
                         <!-- confirmar email -->
