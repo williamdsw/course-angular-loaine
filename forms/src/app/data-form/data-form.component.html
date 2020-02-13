@@ -24,6 +24,13 @@
                             <mat-error *ngIf="verificaValidTouched ('email');"> Email é obrigatório </mat-error>
                             <mat-error *ngIf="verificaEmailInvalido ();"> Digite um email válido </mat-error>
                         </mat-form-field>
+                
+                        <!-- confirmar email -->
+                        <mat-form-field class="field-full-width" color="accent">
+                            <mat-label> Confirmar Email: </mat-label>
+                            <input type="email" formControlName="confirmarEmail" matInput>
+                            <mat-error *ngIf="verificaTemError ('confirmarEmail', 'equalsTo');"> Emails não são iguais </mat-error>
+                        </mat-form-field>
                     </mat-tab>
 
                     <mat-tab label="Endereço" formGroupName="endereco">
