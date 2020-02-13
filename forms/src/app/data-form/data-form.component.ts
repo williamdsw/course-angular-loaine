@@ -65,7 +65,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
       cargo: [null],
       tecnologias: [null],
-      newsletter: [null]
+      newsletter: [null],
+      termos: [null, Validators.requiredTrue]
     });
 
   }
@@ -98,6 +99,11 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   verificaValidTouched(campo: string) {
     const formCampo = this.formulario.get (campo);
+
+    if (campo === 'termos') {
+      console.log (formCampo);
+    }
+    
     return !formCampo.valid;
   }
 

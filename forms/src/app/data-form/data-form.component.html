@@ -135,6 +135,11 @@
                             </mat-radio-group>
                         </div>
                 
+                        <!-- termos -->
+                        <div class="field-full-width" color="accent">
+                            <mat-checkbox formControlName="termos"> Aceito os Termos </mat-checkbox>
+                            <mat-error *ngIf="verificaValidTouched ('termos');"> Por favor, aceite os termos </mat-error>
+                        </div>
                     </mat-tab>
 
                 </mat-tab-group>
