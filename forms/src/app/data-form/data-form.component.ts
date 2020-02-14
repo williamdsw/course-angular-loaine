@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, empty } from 'rxjs';
 
 import { DropdownService } from './../shared/services/dropdown.service';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -11,7 +11,7 @@ import { Estado } from './../shared/models/estado';
 import { Cargo } from '../shared/models/cargos';
 import { Tecnologia } from '../shared/models/tecnologias';
 import { FormValidations } from '../shared/form-validations';
-import { map } from 'rxjs/operators';
+import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-data-form',
@@ -49,13 +49,13 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
     this.inscricao = new Subscription();
 
+    // Buscando dados dos Selects
     this.estados = this.dropdownService.getEstadosBr ();
     this.cargos = this.dropdownService.getCargos ();
     this.tecnologias = this.dropdownService.getTecnologias ();
     this.newsletter = this.dropdownService.getNewsletter ();
 
-    // this.inscricao = this.verificaEmailService.verificarEmail ('email@email.com').subscribe ();
-
+    // Inicializando form
     this.formulario = this.formBuilder.group({
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
       email: [null, [ Validators.required, Validators.email ], [this.verificarEmail.bind (this)]],
@@ -77,6 +77,12 @@ export class DataFormComponent implements OnInit, OnDestroy {
       termos: [null, Validators.requiredTrue],
       frameworks: this.buildFrameworks ()
     });
+
+    this.formulario.get ('endereco.cep').statusChanges.pipe (
+      distinctUntilChanged (),
+      tap (value => { console.log ('valor CEP: ', value) }),
+      switchMap (status => status === 'VALID' ? this.consultaCepService.consultaCEP (this.formulario.get ('endereco.cep').value) : empty ())
+    ).subscribe (dados => dados ? this.populaDadosForm (dados) : {});
 
   }
 
