@@ -99,7 +99,11 @@
                                     <td>
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Cidade: </mat-label>
-                                            <input type="text" matInput formControlName="cidade">
+                                            <mat-select formControlName="cidade">
+                                                <mat-option *ngFor="let cidade of cidades" [value]="cidade.nome">
+                                                    {{ cidade.nome }}
+                                                </mat-option>
+                                            </mat-select>
                                         </mat-form-field>
                                         <app-error-message [control]="formulario.get ('endereco.cidade')" [label]="'Cidade'"></app-error-message>
                                     </td>

@@ -9,8 +9,9 @@ import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 import { VerificaEmailService } from './services/verifica-email.service';
 
 import { Estado } from './../shared/models/estado';
+import { Cidade } from './../shared/models/cidade';
 import { Cargo } from '../shared/models/cargos';
-import { Tecnologia } from '../shared/models/tecnologias';
+import { Tecnologia } from '../shared/models/tecnologia';
 import { FormValidations } from '../shared/form-validations';
 
 import { BaseFormComponent } from '../shared/base-form/base-form.component';
@@ -27,6 +28,7 @@ export class DataFormComponent extends BaseFormComponent implements OnInit, OnDe
   private inscricao: Subscription;
   private postUrl: string;
   estados: Observable<Estado[]>;
+  cidades: Cidade[] = [];
   cargos: Cargo[];
   tecnologias: Tecnologia[];
   newsletter: any[];
@@ -87,6 +89,17 @@ export class DataFormComponent extends BaseFormComponent implements OnInit, OnDe
       switchMap (status => status === 'VALID' ? this.consultaCepService.consultaCEP (this.formulario.get ('endereco.cep').value) : empty ())
     ).subscribe (dados => dados ? this.populaDadosForm (dados) : {});
 
+    this.formulario.get ('endereco.estado').valueChanges.pipe (
+      tap (estado => console.log ('Novo estado: ', estado)),
+      switchMap (sigla => this.estados.pipe (
+        map (est => est.filter (estado => estado.sigla === sigla)),
+        map (est => est[0].id),
+        switchMap (estadoId => this.dropdownService.getCidades (parseInt (estadoId)).pipe (
+          map ((cidades: Cidade[]) => this.cidades = cidades)
+        ))
+      ))
+    )
+    .subscribe (console.log);
   }
 
   ngOnDestroy() {
