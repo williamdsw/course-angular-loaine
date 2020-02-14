@@ -3,17 +3,24 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DropdownService } from './services/dropdown.service';
+import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 import { FormDebugComponent } from './form-debug/form-debug.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 @NgModule({
-  declarations: [FormDebugComponent],
+  declarations: [
+    FormDebugComponent, 
+    ErrorMessageComponent
+  ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMaterialModule
   ],
   exports: [
-    FormDebugComponent
+    FormDebugComponent,
+    ErrorMessageComponent
   ],
   providers: [DropdownService]
 })

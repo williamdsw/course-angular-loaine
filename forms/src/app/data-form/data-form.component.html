@@ -14,8 +14,8 @@
                         <mat-form-field class="field-full-width" color="accent">
                             <mat-label> Nome: </mat-label>
                             <input type="text" formControlName="nome" matInput>
-                            <mat-error> Nome é obrigatório </mat-error>
                         </mat-form-field>
+                        <app-error-message [control]="formulario.get ('nome')" [label]="'Nome'"></app-error-message>
                 
                         <!-- email -->
                         <mat-form-field class="field-full-width" color="accent">
