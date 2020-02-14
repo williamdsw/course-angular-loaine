@@ -9,6 +9,14 @@
 
                 <mat-tab-group backgroundColor="accent" color="warn">
                     <mat-tab label="Login">
+
+                        <app-input-field formControlName="teste"
+                                         [classeCSS]=""
+                                         id="teste"
+                                         label="Teste"
+                                         placeholder="Teste"
+                                         [control]="formulario.get ('teste')">
+                        </app-input-field>
                 
                         <!-- nome -->
                         <mat-form-field class="field-full-width" color="accent">
@@ -32,8 +40,8 @@
                         <mat-form-field class="field-full-width" color="accent">
                             <mat-label> Confirmar Email: </mat-label>
                             <input type="email" formControlName="confirmarEmail" matInput>
-                            <mat-error *ngIf="verificaTemError ('confirmarEmail', 'equalsTo');"> Emails não são iguais </mat-error>
                         </mat-form-field>
+                        <app-error-message [control]="formulario.get ('confirmarEmail')" [label]="'Emails'"></app-error-message>
                     </mat-tab>
 
                     <mat-tab label="Endereço" formGroupName="endereco">
@@ -46,9 +54,8 @@
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> CEP: </mat-label>
                                             <input type="text" matInput formControlName="cep">
-                                            <mat-error> Informe o CEP </mat-error>
-                                            <mat-error *ngIf="verificaTemError ('endereco.cep', 'cepInvalido');"> CEP é inválido </mat-error>
                                         </mat-form-field>
+                                        <app-error-message [control]="formulario.get ('endereco.cep')" [label]="'CEP'"></app-error-message>
                                     </td>
 
                                     <!-- numero -->
@@ -56,8 +63,8 @@
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Número: </mat-label>
                                             <input type="text" matInput formControlName="numero">
-                                            <mat-error> Informe o número do local </mat-error>
                                         </mat-form-field>
+                                        <app-error-message [control]="formulario.get ('endereco.numero')" [label]="'Número'"></app-error-message>
                                     </td>
                                 </tr>
                             </table>
@@ -72,8 +79,8 @@
                             <mat-form-field class="field-full-width" color="accent">
                                 <mat-label> Rua: </mat-label>
                                 <input type="text" matInput formControlName="rua">
-                                <mat-error> Informe a rua </mat-error>
                             </mat-form-field>
+                            <app-error-message [control]="formulario.get ('endereco.rua')" [label]="'Rua'"></app-error-message>
 
                             <table class="table-full-width">
                                 <tr>
@@ -82,8 +89,8 @@
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Bairro: </mat-label>
                                             <input type="text" matInput formControlName="bairro">
-                                            <mat-error> Informe o bairro </mat-error>
                                         </mat-form-field>
+                                        <app-error-message [control]="formulario.get ('endereco.bairro')" [label]="'Bairro'"></app-error-message>
                                     </td>
 
                                     <!-- cidade -->
@@ -91,8 +98,8 @@
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Cidade: </mat-label>
                                             <input type="text" matInput formControlName="cidade">
-                                            <mat-error> Informe a cidade </mat-error>
                                         </mat-form-field>
+                                        <app-error-message [control]="formulario.get ('endereco.cidade')" [label]="'Cidade'"></app-error-message>
                                     </td>
 
                                     <!-- estado -->
@@ -100,13 +107,12 @@
                                         <mat-form-field class="field-full-width" color="accent">
                                             <mat-label> Estado: </mat-label>
                                             <mat-select formControlName="estado">
-                                                <!-- async = faz o subscribe e unsubscribe o observable 'estados' -->
                                                 <mat-option *ngFor="let estado of estados | async;" [value]="estado.sigla">
                                                     {{ estado.nome }}
                                                 </mat-option>
                                             </mat-select>
-                                            <mat-error> Informe o estado </mat-error>
                                         </mat-form-field>
+                                        <app-error-message [control]="formulario.get ('endereco.estado')" [label]="'Estado'"></app-error-message>
                                     </td>
                                 </tr>
                             </table>
@@ -144,7 +150,7 @@
                             <div formArrayName="frameworks" *ngFor="let item of formulario.get ('frameworks').controls; let i = index;">
                                 <mat-checkbox [formControlName]="i"> {{ frameworks[i] }} </mat-checkbox>    
                             </div>
-                            <mat-error *ngIf="verificaValidTouched ('frameworks');"> Selecione pelo menos 2 opçoes </mat-error>
+                            <app-error-message [control]="formulario.get ('frameworks')" [label]="'Framework'"></app-error-message>
                         </div>
                 
                         <!-- newsletter -->
@@ -158,7 +164,7 @@
                         <!-- termos -->
                         <div class="field-full-width" color="accent">
                             <mat-checkbox formControlName="termos"> Aceito os Termos </mat-checkbox>
-                            <mat-error *ngIf="verificaValidTouched ('termos');"> Por favor, aceite os termos </mat-error>
+                            <app-error-message [control]="formulario.get ('termos')" [label]="'Termos'"></app-error-message>
                         </div>
                     </mat-tab>
 

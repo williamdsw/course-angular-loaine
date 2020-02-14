@@ -60,10 +60,11 @@ export class FormValidations {
 
     static getErrorMessage(fieldName: string, validatorName: string, validatorValue?: any) {
         const config = {
-            'required': `${fieldName} é obrigatório.`,
+            'required': `${fieldName} é obrigatório (a).`,
             'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres`,
             'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres`,
-            'cepInvalido': 'CEP inválido.'
+            'cepInvalido': 'CEP inválido.',
+            'equalsTo': `${fieldName} não são iguais.`
         };
 
         return config[validatorName];

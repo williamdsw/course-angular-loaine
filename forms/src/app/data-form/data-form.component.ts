@@ -57,6 +57,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
     // Inicializando form
     this.formulario = this.formBuilder.group({
+      teste: [null],
       nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (20) ]],
       email: [null, [ Validators.required, Validators.email ], [this.verificarEmail.bind (this)]],
       confirmarEmail: [null, [FormValidations.equalsTo ('email')]],
