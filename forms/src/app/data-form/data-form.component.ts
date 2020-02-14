@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Subscription, Observable, empty } from 'rxjs';
+import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { DropdownService } from './../shared/services/dropdown.service';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
@@ -11,18 +12,18 @@ import { Estado } from './../shared/models/estado';
 import { Cargo } from '../shared/models/cargos';
 import { Tecnologia } from '../shared/models/tecnologias';
 import { FormValidations } from '../shared/form-validations';
-import { map, tap, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
+import { BaseFormComponent } from '../shared/base-form/base-form.component';
 
 @Component({
   selector: 'app-data-form',
   templateUrl: './data-form.component.html',
   styleUrls: ['./data-form.component.css']
 })
-export class DataFormComponent implements OnInit, OnDestroy {
+export class DataFormComponent extends BaseFormComponent implements OnInit, OnDestroy {
 
   // FIELDS
 
-  formulario: FormGroup;
   private inscricao: Subscription;
   private postUrl: string;
   estados: Observable<Estado[]>;
@@ -40,7 +41,8 @@ export class DataFormComponent implements OnInit, OnDestroy {
     private consultaCepService: ConsultaCepService,
     private verificaEmailService: VerificaEmailService) {
 
-    this.postUrl = 'https://httpbin.org/post';
+      super ();
+      this.postUrl = 'https://httpbin.org/post';
   }
 
   // LIFE CYCLE HOOKS
@@ -93,9 +95,7 @@ export class DataFormComponent implements OnInit, OnDestroy {
 
   // HELPER FUNCTIONS
 
-  onSubmit() {
-
-    // Object.assign (...) = Copia um objeto para outro
+  submit() {
     let valueSubmit = Object.assign ({}, this.formulario.value);
     valueSubmit = Object.assign (valueSubmit, {
       frameworks: valueSubmit.frameworks
@@ -103,46 +103,12 @@ export class DataFormComponent implements OnInit, OnDestroy {
                              .filter (value => value != null)
     });
 
-    console.log (valueSubmit);
-
-    if (this.formulario.valid) {
-      this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (valueSubmit)).subscribe (
-        response => {
-          console.log (response);
-          this.resetar ();
-        },
-        error => { alert ('erro'); });
-    } else {
-      console.log ('formulario invalido');
-      this.verificaValidacoesForm (this.formulario);
-    }
-  }
-
-  resetar() {
-    this.formulario.reset ();
-  }
-
-  verificaValidTouched(campo: string) {
-    const formCampo = this.formulario.get (campo);
-    return !formCampo.valid;
-  }
-
-  verificaTemError(campo: string, error: string) {
-
-    if (campo && error) {
-      const formCampo = this.formulario.get (campo);
-      return formCampo.hasError (error);
-    }
-
-    return false;
-  }
-
-  verificaEmailInvalido() {
-    const email = this.formulario.get ('email');
-    if (email.errors) {
-      const key = 'email';
-      return email.errors[key];
-    }
+    this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (valueSubmit)).subscribe (
+      response => {
+        console.log (response);
+        this.resetar ();
+      },
+      error => { alert ('erro'); });
   }
 
   consultaCEP() {
@@ -186,17 +152,6 @@ export class DataFormComponent implements OnInit, OnDestroy {
         bairro: null,
         cidade: null,
         estado: null
-      }
-    });
-  }
-
-  verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys (formGroup.controls).forEach (campo => {
-      const controle = formGroup.get (campo);
-      controle.markAsDirty ();
-
-      if (controle instanceof FormGroup) {
-        this.verificaValidacoesForm (controle);
       }
     });
   }
