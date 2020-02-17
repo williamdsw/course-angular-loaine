@@ -1,0 +1,14 @@
+<style>
+    h1 {
+        color: red;
+    }
+</style>
+
+<router-outlet></router-outlet>
+
+<div>
+    <h1> Links: </h1>
+    <h2><a [routerLink]="['keyvalue']" routerLinkActive="active"> Key Value </a></h2>
+    <h2><a [routerLink]="['cursos']" routerLinkActive="active"> Cursos </a></h2>
+    <h2><a [routerLink]="['alunos']" routerLinkActive="active"> Alunos </a></h2>
+</div>
