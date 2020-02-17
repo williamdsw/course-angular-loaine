@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { UnsubscribeRxjsModule } from './unsubscribe-rxjs/unsubscribe-rxjs.module';
+
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -13,6 +15,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    UnsubscribeRxjsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
