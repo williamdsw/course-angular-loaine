@@ -1,0 +1,32 @@
+// Exemplo GET
+http://localhost:3000/cursos
+
+###
+
+// Exemplo GET
+http://localhost:3000/cursos/1
+
+###
+
+// Exemplo POST
+POST http://localhost:3000/cursos HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Java"
+}
+
+###
+
+// Exemplo PUT
+PUT http://localhost:3000/cursos/2 HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Java OO"
+}
+
+###
+
+// Exemplo DELETE
+DELETE http://localhost:3000/cursos/2 HTTP/1.1
