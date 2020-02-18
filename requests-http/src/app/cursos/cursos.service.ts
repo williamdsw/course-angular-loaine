@@ -1,50 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { tap, delay, take } from 'rxjs/operators'
-
-import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 import { Curso } from './curso';
+
+import { CrudService } from '../shared/crud-service'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CursosService {
+export class CursosService extends CrudService<Curso> {
 
-  // FIELDS
-
-  private readonly API = `${environment.API}/cursos`;
-
-  // CONSTRUCTOR
-
-  constructor(private httpClient: HttpClient) { }
-
-  // HELPER FUNCTIONS
-
-  list() {
-    return this.httpClient.get<Curso[]> (this.API).pipe (
-      delay (2000),
-      tap (console.log)
-    );
+  constructor(protected httpClient: HttpClient) {
+    super (httpClient, `${environment.API}/cursos`);
   }
-
-  loadById (id: number) {
-    return this.httpClient.get<Curso> (`${this.API}/${id}`).pipe (take (1));
-  }
-
-  private create(curso) {
-    return this.httpClient.post (this.API, curso).pipe (take (1));
-  }
-
-  private update(curso) {
-    return this.httpClient.put (`${this.API}/${curso.id}`, curso).pipe (take (1));
-  }
-
-  save(curso) {
-    return (curso.id ? this.update (curso) : this.create (curso));
-  }
-
-  remove(curso) {
-    return this.httpClient.delete (`${this.API}/${curso.id}`).pipe (take (1));
-  }
+  
 }
