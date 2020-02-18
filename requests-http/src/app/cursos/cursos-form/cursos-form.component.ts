@@ -27,33 +27,13 @@ export class CursosFormComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    // Gerenciado pelo proprio Angular, nao precisa dar unsubscribe manualmente
-    this.route.params
-    .pipe (
-      map ((params: any) => params['id']),            // mapeia valor, nesse caso busca pelo id
-      switchMap (id => this.service.loadById (id)))   // utiliza o id retornado, e tenta outro subscribe
-    .subscribe (
-      (curso: Curso) => {
-        this.updateForm (curso);
-      }
-    )
-
-    // concatMap -> ordem da requisicao importa
-    // mergeMap -> order da requisicao nao importa
-    // exhaustMap -> casos de Login
+    const key = 'curso';
+    const curso: Curso = this.route.snapshot.data[key];
 
     this.form = this.formBuilder.group (
     {
-      id: [null],
-      nome: [null, [ Validators.required, Validators.minLength (3), Validators.maxLength (250) ]]
-    });
-  }
-
-  updateForm(curso: Curso) {
-    this.form.patchValue ({
-      id: curso.id,
-      nome: curso.nome
+      id: [curso.id],
+      nome: [curso.nome, [ Validators.required, Validators.minLength (3), Validators.maxLength (250) ]]
     });
   }
 
