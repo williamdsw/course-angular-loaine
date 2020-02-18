@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, empty, Subject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable, EMPTY, Subject } from 'rxjs';
+import { catchError, take, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { CursosService } from '../cursos.service';
 
@@ -24,15 +23,11 @@ export class CursosListaComponent implements OnInit {
 
   cursoSelecionado: Curso;
 
-  deleteModalRef: BsModalRef;
-  @ViewChild ('deleteModal', { static: true }) template;
-
   constructor(
     private cursoService: CursosService,
     private alertModalService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute,
-    private modalService: BsModalService) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.onRefresh ();
@@ -46,7 +41,7 @@ export class CursosListaComponent implements OnInit {
         console.error (error);
         this.error$.next (true);
         this.handleError ();
-        return empty ();
+        return EMPTY;
       })
     );
   }
@@ -61,22 +56,17 @@ export class CursosListaComponent implements OnInit {
 
   onDelete(curso: Curso) {
     this.cursoSelecionado = curso;
-    console.log (this.cursoSelecionado);
-    this.deleteModalRef = this.modalService.show (this.template, { class: 'modal-sm'});
-  }
-
-  onDeclineDelete() {
-    this.deleteModalRef.hide ();
-  }
-
-  onConfirmDelete() {
-    this.deleteModalRef.hide ();
-    this.cursoService.remove (this.cursoSelecionado).subscribe (
-      success => {
-        this.onRefresh ();
-        this.alertModalService.showAlertSuccess ('Curso removido com sucesso!');
-      },
-      error => this.alertModalService.showAlertDanger ('Erro ao excluir o curso')
-    );
+     const result$ = this.alertModalService.showConfirm ('Confirmação', 'Tem certeza que deseja remover esse curso?');
+     result$.asObservable ().pipe (
+       take (1),
+       switchMap (result => result ? this.cursoService.remove (curso) : EMPTY)
+     )
+     .subscribe ( // 'subscribe' so sera executado quando 'result' for TRUE
+        success => {
+          this.onRefresh ();
+          this.alertModalService.showAlertSuccess ('Curso removido com sucesso!');
+        },
+        error => this.alertModalService.showAlertDanger ('Erro ao excluir o curso')
+     );
   }
 }

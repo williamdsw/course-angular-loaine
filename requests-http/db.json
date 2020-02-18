@@ -1,10 +1,6 @@
 {
   "cursos": [
     {
-      "id": 1,
-      "nome": "Angular Core"
-    },
-    {
       "nome": "Java",
       "id": 2
     },
