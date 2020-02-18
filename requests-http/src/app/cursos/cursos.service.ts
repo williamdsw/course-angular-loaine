@@ -28,6 +28,10 @@ export class CursosService {
     );
   }
 
+  loadById (id: number) {
+    return this.httpClient.get<Curso> (`${this.API}/${id}`).pipe (take (1));
+  }
+
   create(curso) {
     return this.httpClient.post (this.API, curso).pipe (take (1));
   }
