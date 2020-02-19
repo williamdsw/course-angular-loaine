@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class UploadFileComponent implements OnInit, OnDestroy {
 
   public files: Set<File>;
+  public fileNames: string[] = [];
 
   private subscription$: Subscription;
 
@@ -28,17 +29,18 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   onChange(event) {
     console.log (event);
 
+    this.fileNames = [];
+
     const selectedFiles = <FileList>event.srcElement.files;
     const labelCustomFile = document.getElementById ('labelCustomFile');
     
-    const fileNames = [];
     this.files = new Set ();
     for (let index = 0; index < selectedFiles.length; index++) {
-      fileNames.push (selectedFiles.item (index).name);
+      this.fileNames.push (selectedFiles.item (index).name);
       this.files.add (selectedFiles.item (index));
     }
 
-    labelCustomFile.innerHTML = fileNames.join (", ");
+    labelCustomFile.innerHTML = (this.fileNames.length > 1 ? 'Múltiplos arquivos...' : (this.fileNames.length == 1 ? 'Um arquivo apenas...' : 'Selecionar Arquivo'));
   }
 
   onUpload() {

@@ -5,6 +5,15 @@
     </div>
 </div>
 
+<div class="mt-1" *ngIf="files">
+    <div class="card" *ngFor="let name of fileNames;">
+        <div class="card-body">
+            {{ name }}
+        </div>
+    </div>
+</div>
+
+
 <div style="margin-top: 10px;">
     <button type="button" class="btn btn-primary" (click)="onUpload ();" [disabled]="!files"> Upload </button>
 </div>
