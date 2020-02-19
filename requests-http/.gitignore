@@ -47,4 +47,4 @@ Thumbs.db
 
 # node
 /server/node_modules
-/server/node_modules/uploads
+/server/uploads
