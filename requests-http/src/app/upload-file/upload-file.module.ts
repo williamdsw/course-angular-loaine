@@ -9,7 +9,7 @@ import { UploadFileComponent } from './upload-file.component';
   declarations: [UploadFileComponent],
   imports: [
     CommonModule,
-    UploadFileRoutingModule
+    UploadFileRoutingModule,
   ]
 })
 export class UploadFileModule { }
