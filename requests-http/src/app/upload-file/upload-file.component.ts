@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
 import { UploadFileService } from './upload-file.service';
@@ -13,6 +14,8 @@ export class UploadFileComponent implements OnInit, OnDestroy {
 
   public files: Set<File>;
   public fileNames: string[] = [];
+  public uploading: boolean = false;
+  public progress: number = 0;
 
   private subscription$: Subscription;
 
@@ -30,6 +33,8 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     console.log (event);
 
     this.fileNames = [];
+    this.uploading = false;
+    this.progress = 0;
 
     const selectedFiles = <FileList>event.srcElement.files;
     const labelCustomFile = document.getElementById ('labelCustomFile');
@@ -46,8 +51,21 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   onUpload() {
 
     if (this.files && this.files.size >= 1) {
-      this.subscription$ = this.uploadService.upload (this.files, environment.BASE_URL + '/upload').subscribe (
-        response => console.log ('Upload concluído')
+      this.uploading = true;
+      this.subscription$ = this.uploadService.upload (this.files, environment.BASE_URL + '/upload')
+      .subscribe ((event: HttpEvent<Object>) => {
+          console.log (event);
+
+          if (event.type === HttpEventType.Response) {
+            console.log ('Upload concluído');
+          }
+          else if (event.type === HttpEventType.UploadProgress) {
+            const percent = Math.round ((event.loaded * 100) / event.total);
+            console.log ('Progresso:', percent);
+            this.progress = percent;
+          }
+
+        }
       );
     }
   }

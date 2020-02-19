@@ -1,3 +1,4 @@
+<!-- input -->
 <div style="margin-top: 10px;">
     <div class="custom-file">
         <input type="file"id="inputCustomFile" class="custom-file-input" multiple (change)="onChange ($event);">
@@ -5,6 +6,7 @@
     </div>
 </div>
 
+<!-- nomes dos arquivos -->
 <div class="mt-1" *ngIf="files">
     <div class="card" *ngFor="let name of fileNames;">
         <div class="card-body">
@@ -13,7 +15,14 @@
     </div>
 </div>
 
+<!-- barra de progresso -->
+<div class="mt-1" *ngIf="uploading">
+    <div class="progress">
+        <div class="progress-bar" [style.width]="progress + '%'" role="progressbar"> {{ progress }} % </div>
+    </div>
+</div>
 
+<!-- upload -->
 <div style="margin-top: 10px;">
     <button type="button" class="btn btn-primary" (click)="onUpload ();" [disabled]="!files"> Upload </button>
 </div>

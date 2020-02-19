@@ -16,7 +16,10 @@ export class UploadFileService {
       formData.append ('file', file, file.name);
     });
 
-    const request = new HttpRequest ('POST', url, formData);
-    return this.httpClient.request (request);
+    return this.httpClient.post (url, formData, {
+      // funciona apenas do UPLOAD / DOWNLOAD
+      observe: 'events',
+      reportProgress: true
+    });
   }
 }
