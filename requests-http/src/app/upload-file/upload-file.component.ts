@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { UploadFileService } from './upload-file.service';
 import { environment } from 'src/environments/environment';
 
+import { filterResponse, uploadProgress } from '../shared/rxjs-operators'
+
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
@@ -53,20 +55,10 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     if (this.files && this.files.size >= 1) {
       this.uploading = true;
       this.subscription$ = this.uploadService.upload (this.files, environment.BASE_URL + '/upload')
-      .subscribe ((event: HttpEvent<Object>) => {
-          console.log (event);
-
-          if (event.type === HttpEventType.Response) {
-            console.log ('Upload concluído');
-          }
-          else if (event.type === HttpEventType.UploadProgress) {
-            const percent = Math.round ((event.loaded * 100) / event.total);
-            console.log ('Progresso:', percent);
-            this.progress = percent;
-          }
-
-        }
-      );
+        .pipe (
+          uploadProgress (pgr => { this.progress = pgr; }),
+          filterResponse ()
+        ).subscribe ( response => console.log ('Upload Concluído') );
     }
   }
 
