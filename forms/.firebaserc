@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "curso-angular-forms-will": {
+      "hosting": {
+        "forms": [
+          "curso-angular-forms-will"
+        ]
+      }
+    }
+  }
+}
