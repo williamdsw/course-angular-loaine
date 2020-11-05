@@ -2,7 +2,10 @@
 
     <!-- Interpolation -->
     <article>
-        <h3> Interpolation / Interpolação </h3>
+        <header>
+            <h3> Interpolation / Interpolação </h3>    
+        </header>
+        
         <p> String renderizada com interpolação: {{ url }} </p>
         <p> Resultado de 1 + 1 é : {{ 1 + 1 }} </p>
         <p> Resultado de 1 + 1 não é : {{ 1 + 1  + getValor ()}} </p>
@@ -11,10 +14,15 @@
 
     <!-- Property Binding -->
     <article>
-        <h3> Property Binding </h3>
+        <header>
+            <h3> Property Binding </h3>
+        </header>
+        
         <img src="{{ ulrImagem }}">
         <img [src]="ulrImagem">
         <img bind-src="ulrImagem">
     </article>
 
 </section>
+
+<hr>

@@ -2,24 +2,23 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'data-binding';
-  valor: number;
-  deletarCiclo: boolean;
+  public title = 'data-binding';
+  public valor: number;
+  public deletarCiclo: boolean;
 
   constructor() {
     this.valor = 5;
     this.deletarCiclo = false;
   }
 
-  mudarValor() {
+  public mudarValor(): void {
     this.valor++;
   }
 
-  destruirCiclo() {
+  public destruirCiclo(): void {
     this.deletarCiclo = true;
   }
 }

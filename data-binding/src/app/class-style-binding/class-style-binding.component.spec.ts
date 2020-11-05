@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ClassStyleBindingComponent } from './class-style-binding.component';
 
@@ -6,7 +6,7 @@ describe('ClassStyleBindingComponent', () => {
   let component: ClassStyleBindingComponent;
   let fixture: ComponentFixture<ClassStyleBindingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ClassStyleBindingComponent ]
     })

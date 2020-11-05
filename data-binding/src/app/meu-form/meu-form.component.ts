@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-meu-form',
-  templateUrl: './meu-form.component.html',
-  styleUrls: ['./meu-form.component.css']
+  templateUrl: './meu-form.component.html'
 })
 export class MeuFormComponent {
 
-  nome: string;
-  pessoa: any = {
+  public nome: string;
+  public pessoa: any = {
     nome: 'doom slayer',
     idade: 33
   };
@@ -16,5 +15,4 @@ export class MeuFormComponent {
   constructor() {
     this.nome = 'abc';
    }
-
 }

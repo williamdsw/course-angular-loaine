@@ -2,20 +2,19 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-input-output-properties',
-  templateUrl: './input-output-properties.component.html',
-  styleUrls: ['./input-output-properties.component.css']
+  templateUrl: './input-output-properties.component.html'
 })
 export class InputOutputPropertiesComponent {
 
-  nomeDoCurso: string;
-  valorInicial: number;
+  public nomeDoCurso: string;
+  public valorInicial: number;
 
   constructor() {
     this.nomeDoCurso = 'Angular';
     this.valorInicial = 15;
   }
 
-  onMudouValor(event) {
+  public onMudouValor(event): void {
     console.log (event.novoValor);
   }
 }

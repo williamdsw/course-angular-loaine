@@ -1,5 +1,9 @@
 <div>
-    <button class="btn btn-primary" (click)="decrementa ();">-</button>
-    <input type="text" #campoInput [value]="valor" readonly>
-    <button class="btn btn-primary" (click)="incrementa ();">+</button>
+    <button class="btn btn-primary mx-1" (click)="decrementa ();">
+        &minus;
+    </button>
+    <input type="text" class="mx-3" #campoInput [value]="valor" disabled>
+    <button class="btn btn-primary mx-1" (click)="incrementa ();">
+        +
+    </button>
 </div>

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EventBindingComponent } from './event-binding.component';
 
@@ -6,7 +6,7 @@ describe('EventBindingComponent', () => {
   let component: EventBindingComponent;
   let fixture: ComponentFixture<EventBindingComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EventBindingComponent ]
     })

@@ -12,14 +12,14 @@ import {
 
 @Component({
   selector: 'app-ciclo',
-  templateUrl: './ciclo.component.html',
-  styleUrls: ['./ciclo.component.css']
+  templateUrl: './ciclo.component.html'
 })
 export class CicloComponent implements OnInit, OnChanges, DoCheck, 
                                        AfterContentInit, AfterContentChecked, AfterViewInit, 
                                        AfterViewChecked, OnDestroy  {
 
-  @Input() valorInicial: number;
+  @Input() 
+  public valorInicial: number;
 
   constructor() {
     this.log ('constructor');
@@ -60,7 +60,7 @@ export class CicloComponent implements OnInit, OnChanges, DoCheck,
     this.log ('ngOnDestroy');
   }
 
-  private log(hook: string) {
+  private log(hook: string): void {
     console.log(hook);
   }
 }

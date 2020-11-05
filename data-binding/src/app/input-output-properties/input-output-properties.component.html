@@ -1,7 +1,9 @@
 <section class="input-output-properties">
     <article>
-        <h3> Input / Output Properties </h3>
-
+        <header>
+            <h3> Input / Output Properties </h3>
+        </header>
+        
         <!-- Passa um valor para um Input exposto pelo selector -->
         <app-curso [nomeCurso]="nomeDoCurso"></app-curso>
 
@@ -9,3 +11,5 @@
         <app-contador [valor]="valorInicial" (mudouValor)="onMudouValor ($event);"></app-contador>
     </article>
 </section>
+
+<hr>
