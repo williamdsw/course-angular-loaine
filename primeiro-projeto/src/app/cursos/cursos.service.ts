@@ -7,7 +7,7 @@ export class CursosService {
 
   constructor() { }
 
-  getCursos() {
+  public getCursos(): string[] {
     return ['Java', 'JavaScript', 'C#', 'PHP'];
   }
 }
