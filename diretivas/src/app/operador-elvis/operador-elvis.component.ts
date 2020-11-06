@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-operador-elvis',
-  templateUrl: './operador-elvis.component.html',
-  styleUrls: ['./operador-elvis.component.scss']
+  templateUrl: './operador-elvis.component.html'
 })
 export class OperadorElvisComponent implements OnInit {
 
-  tarefa: any = {
+  public tarefa: any = {
     descricao: 'Descrição da Tarefa',
     responsavel: {
       usuario: null

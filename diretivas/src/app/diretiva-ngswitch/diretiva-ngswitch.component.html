@@ -4,25 +4,36 @@
             <li class="nav-item">
                 <a class="nav-link" 
                    [class.active]="aba == 'home'" 
-                   (click)="aba = 'home'"> Home </a>
+                   (click)="aba = 'home'"> 
+                   Home 
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" 
                    [class.active]="aba == 'mapa'" 
-                   (click)="aba = 'mapa'"> Mapa </a>
+                   (click)="aba = 'mapa'"> 
+                   Mapa 
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" 
                    [class.active]="aba == 'lista'" 
-                   (click)="aba = 'lista'"> Lista </a>
+                   (click)="aba = 'lista'"> 
+                   Lista 
+                </a>
             </li>
         </ul>
     </div>
 </nav>
 
 <!-- Necessita ser um property binding -->
-<div class="container" [ngSwitch]="aba">
-    <p *ngSwitchCase="'mapa'"> Modo Mapa ativado </p>
-    <p *ngSwitchCase="'lista'"> Modo Lista ativado </p>
-    <p *ngSwitchDefault> Home </p>
-</div>
+<article>
+    <div class="container-fluid my-3" [ngSwitch]="aba">
+        <p *ngSwitchCase="'mapa'"> Modo Mapa ativado </p>
+        <p *ngSwitchCase="'lista'"> Modo Lista ativado </p>
+        <p *ngSwitchDefault> Home </p>
+    </div>
+</article>
+
+<hr>
+

@@ -1,30 +1,43 @@
+<article>
 
-<!-- style binding / two-way data binding -->
-<h4> Styles com property binding (style binding) </h4>
-<button 
-        [style.backgroundColor]="ativo ? 'blue' : 'gray'"
-        [style.color]="ativo ? 'white' : 'black'"
-        [style.fontWeight]="ativo ? 'bold' : 'normal'"
-        [style.fontSize]="tamanhoFonte + 'px'"
-        (click)="mudarAtivo ();">
-    Mudar atributo ativo
-</button>
+    <!-- style binding / two-way data binding -->
+    <section class="my-3">
+        <header>
+            <h3> Styles com property binding (style binding) </h3>
+        </header>
 
-<br><br>
+        <button type="button" class="btn"
+            [style.backgroundColor]="ativo ? 'blue' : 'gray'"
+            [style.color]="ativo ? 'white' : 'black'"
+            [style.fontWeight]="ativo ? 'bold' : 'normal'"
+            [style.fontSize]="tamanhoFonte + 'px'"
+            (click)="mudarAtivo ();">
+                Mudar atributo ativo
+        </button>
+    </section>
 
-<!-- ngStyle -->
-<h4> Styles com diretiva ngStyle </h4>
-<button 
-        [ngStyle]="{
-            'backgroundColor': (ativo ? 'blue' : 'gray'),
-            'color': (ativo ? 'white' : 'black'),
-            'fontWeight': (ativo ? 'bold' : 'normal'),
-            'fontSize': (tamanhoFonte + 'px')
-        }"
-        (click)="mudarAtivo ();">
-    Mudar atributo ativo
-</button>
+    <!-- ngStyle -->
+    <section class="my-3">
+        <header>
+            <h3> Styles com diretiva ngStyle </h3>
+        </header>
 
-<br><br>
+        <button type="button" class="btn"
+            [ngStyle]="{
+                'backgroundColor': (ativo ? 'blue' : 'gray'),
+                'color': (ativo ? 'white' : 'black'),
+                'fontWeight': (ativo ? 'bold' : 'normal'),
+                'fontSize': (tamanhoFonte + 'px')
+            }"
+            (click)="mudarAtivo ();">
+                Mudar atributo ativo
+        </button>
+    </section>
 
-<input type="text" [(ngModel)]="tamanhoFonte">
+    <section>
+        <label for="fontInput"> Tamanho da fonte: </label>
+        <input type="text" id="fontInput" class="mx-3" [(ngModel)]="tamanhoFonte">
+    </section>
+</article>
+
+<hr>

@@ -10,17 +10,18 @@ export class NgElseDirective {
   // TemplateRef = referencia ao <template>
   // ViewContainerRef = referencia ao conteudo do <template>
 
-  constructor(private templateRef: TemplateRef<any>,
-              private viewContainerRef: ViewContainerRef) { }
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainerRef: ViewContainerRef) { }
 
   // INPUT FUNCTIONS
 
-  @Input() set ngElse(condition: boolean) {
+  @Input()
+  public set ngElse(condition: boolean) {
     if (!condition) {
       this.viewContainerRef.createEmbeddedView (this.templateRef);
     } else {
       this.viewContainerRef.clear ();
     }
   }
-
 }

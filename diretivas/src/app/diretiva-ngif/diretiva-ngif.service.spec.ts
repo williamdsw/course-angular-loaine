@@ -6,7 +6,7 @@ describe('DiretivaNgifService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DiretivaNgifService = TestBed.get(DiretivaNgifService);
+    const service: DiretivaNgifService = TestBed.inject(DiretivaNgifService);
     expect(service).toBeTruthy();
   });
 });

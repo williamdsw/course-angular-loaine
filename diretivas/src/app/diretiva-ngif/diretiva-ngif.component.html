@@ -1,19 +1,38 @@
-<!-- Recomendado para arvores de elementos grandes -->
-<h2> *ngIf </h2>
+<article>
 
-<div *ngIf="cursos.length >= 1"> Lista de cursos aqui: </div>
-<div *ngIf="cursos.length == 0"> Não existem cursos para serem listados.</div>
+    <!-- *ngIf = Recomendado para arvores de elementos grandes -->
+    <section>
+        <header>
+            <h2> *ngIf </h2>
+        </header>
 
-<div *ngIf="mostrarCursos"> Lista de cursos aqui: </div>
-<div *ngIf="!mostrarCursos"> Não existem cursos para serem listados.</div>
+        <div class="my-1" *ngIf="cursos.length >= 1"> 
+            Lista de cursos aqui: 
+        </div>
+        <div class="my-1" *ngIf="cursos.length == 0"> 
+            Não existem cursos para serem listados.
+        </div>
 
-<br>
+        <div class="my-1" *ngIf="mostrarCursos"> 
+            Lista de cursos aqui: 
+        </div>
+        <div class="my-1" *ngIf="!mostrarCursos"> 
+            Não existem cursos para serem listados.
+        </div>
 
-<button (click)="onMostrarCursos ();" > Mostrar ou esconder cursos </button>
+        <button class="btn btn-primary my-2" (click)="onMostrarCursos ();" > 
+            Mostrar ou esconder cursos 
+        </button>
+    </section>
 
-<br>
+    <!-- [hidden] = Coisas pequenas como mensagem de validacao etc. -->
+    <section>
+        <header>
+            <h5> Hidden como alternativa: </h5>
+        </header>
+        <div [hidden]="!mostrarCursos"> Lista de cursos aqui: </div>
+        <div [hidden]="mostrarCursos"> Não existem cursos para serem listados. </div>
+    </section>
+</article>
 
-<!-- Coisas pequenas como mensagem de validacao etc. -->
-<h5> Hidden como alternativa: </h5>
-<div [hidden]="!mostrarCursos"> Lista de cursos aqui: </div>
-<div [hidden]="mostrarCursos"> Não existem cursos para serem listados.</div>
+<hr>

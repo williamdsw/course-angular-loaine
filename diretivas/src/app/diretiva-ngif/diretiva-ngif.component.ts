@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-diretiva-ngif',
-  templateUrl: './diretiva-ngif.component.html',
-  styleUrls: ['./diretiva-ngif.component.scss']
+  templateUrl: './diretiva-ngif.component.html'
 })
 export class DiretivaNgifComponent implements OnInit {
 
-  cursos: string[] = ['Angular 2'];
-  mostrarCursos: boolean;
+  public cursos: string[] = [
+    'Angular 2', 'Java', 'C#', 'PHP', 'C++'
+  ];
+  public mostrarCursos: boolean;
 
   constructor() {
     this.mostrarCursos = false;
@@ -17,7 +18,7 @@ export class DiretivaNgifComponent implements OnInit {
   ngOnInit() {
   }
 
-  onMostrarCursos() {
+  public onMostrarCursos(): void {
     this.mostrarCursos = !this.mostrarCursos;
   }
 

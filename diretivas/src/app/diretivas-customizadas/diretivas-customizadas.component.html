@@ -1,37 +1,56 @@
-<p appFundoAmarelo> Texto com fundo amarelo.</p>
-<button appFundoAmarelo> Botão com fundo amarelo </button>
+<article>
+    <header>
+        <h3> Diretivas Customizadas </h3>
+    </header>
 
-<br><br>
+    <section class="my-3">
+        <p appFundoAmarelo> Texto com fundo amarelo.</p>
+        <button type="button" appFundoAmarelo> Botão com fundo amarelo </button>
+    </section>
 
-<p appHighlightMouse> Texto com highlight quando passo com o mouse </p>
+    <section class="my-3">
+        <p appHighlightMouse> 
+            Texto com highlight quando passo com o mouse 
+        </p>
+    </section>
 
-<br><br>
+    <section class="my-3">
+        <p appHighlight> 
+            Texto com highlight com cores customizadas 
+        </p>
+    </section>
 
-<p appHighlight> Texto com highlight com cores customizadas </p>
+    <section class="my-3">
+        <p appHighlight [defaultColor]="'grey'" [highlightColor]="'red'"> 
+            Texto com highlight com cores customizadas 
+        </p>
+    </section>
 
-<br><br>
+    <!-- ngElse customizado -->
+    <section class="my-3">
+        <header>
+            <h4>
+                Diretiva Estrutura customizada - ngElse
+            </h4>
+        </header>
+        <div *ngIf="mostrarCursos"> Lista de cursos aqui: </div>
+        <div *ngElse="mostrarCursos"> Não existem cursos para serem listados. </div>
 
-<p appHighlight [defaultColor]="'grey'" [highlightColor]="'red'"> 
-    Texto com highlight com cores customizadas 
-</p>
+        <ng-template [ngElse]="mostrarCursos">
+            <div> Não existem cursos para serem listados.</div>
+        </ng-template>
 
-<br><br>
+        <button type="button" class="btn btn-warning" (click)="onMostrarCursos ();" > 
+            Mostrar ou esconder cursos 
+        </button>
 
-<!-- ngElse customizado -->
-<h2> Diretiva Estrutura customizada - ngElse </h2>
-<div *ngIf="mostrarCursos"> Lista de cursos aqui: </div>
-<div *ngElse="mostrarCursos"> Não existem cursos para serem listados.</div>
-<ng-template [ngElse]="mostrarCursos">
-    <div> Não existem cursos para serem listados.</div>
-</ng-template>
+        <!-- If-Else do Angular -->
+        <div *ngIf="mostrarCursos; else elseBlock">
+            <div> Lista de cursos aqui: </div>
+        </div>
 
-<button type="button" (click)="onMostrarCursos ();" > Mostrar ou esconder cursos </button>
-
-<!-- If-Else do Angular -->
-<div *ngIf="mostrarCursos; else elseBlock">
-    <div> Lista de cursos aqui: </div>
-</div>
-
-<ng-template #elseBlock>
-    <div> Não existem cursos para serem listados.</div>
-</ng-template>
+        <ng-template #elseBlock>
+            <div> Não existem cursos para serem listados.</div>
+        </ng-template>
+    </section>
+</article>

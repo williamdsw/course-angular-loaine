@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-diretiva-ngstyle',
-  templateUrl: './diretiva-ngstyle.component.html',
-  styleUrls: ['./diretiva-ngstyle.component.scss']
+  templateUrl: './diretiva-ngstyle.component.html'
 })
 export class DiretivaNgstyleComponent implements OnInit {
 
-  ativo: boolean;
-  tamanhoFonte: number;
+  public ativo: boolean;
+  public tamanhoFonte: number;
 
   constructor() {
     this.ativo = false;
@@ -18,7 +17,7 @@ export class DiretivaNgstyleComponent implements OnInit {
   ngOnInit() {
   }
 
-  mudarAtivo() {
+  public mudarAtivo(): void {
     this.ativo = !this.ativo;
   }
 

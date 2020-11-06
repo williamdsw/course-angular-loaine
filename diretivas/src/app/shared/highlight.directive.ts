@@ -7,10 +7,14 @@ export class HighlightDirective implements OnInit {
 
   // FIELDS
 
-  @HostBinding('style.backgroundColor') backgroundColor: string;
+  @HostBinding('style.backgroundColor')
+  public backgroundColor: string;
 
-  @Input() defaultColor: string;
-  @Input() highlightColor: string;
+  @Input()
+  public defaultColor: string;
+
+  @Input()
+  public highlightColor: string;
 
   // CONSTRUCTOR
 
@@ -21,11 +25,13 @@ export class HighlightDirective implements OnInit {
 
   // HELPER FUNCTIONS
 
-  @HostListener('mouseenter') onMouseEnter() {
+  @HostListener('mouseenter')
+  public onMouseEnter(): void {
     this.backgroundColor = this.highlightColor;
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
+  @HostListener('mouseleave')
+  public onMouseLeave(): void {
     this.backgroundColor = this.defaultColor;
   }
 
