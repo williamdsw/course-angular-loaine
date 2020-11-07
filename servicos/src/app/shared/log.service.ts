@@ -9,7 +9,7 @@ export class LogService {
 
   // HELPER FUNCTIONS
 
-  consoleLog(message: string) {
+  public consoleLog(message: string): void {
     console.log (message);
   }
 }

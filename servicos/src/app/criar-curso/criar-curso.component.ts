@@ -4,14 +4,13 @@ import { CursosService } from './../cursos/cursos.service';
 
 @Component({
   selector: 'app-criar-curso',
-  templateUrl: './criar-curso.component.html',
-  styleUrls: ['./criar-curso.component.css']
+  templateUrl: './criar-curso.component.html'
 })
 export class CriarCursoComponent implements OnInit {
 
   // FIELDS
 
-  cursos: string[] = [];
+  public cursos: string[] = [];
 
   // CONSTRUCTOR
 
@@ -25,7 +24,7 @@ export class CriarCursoComponent implements OnInit {
 
   // HELPER FUNCTIONS
 
-  onAddCurso(curso: string) {
+  public onAddCurso(curso: string): void {
     this.cursosService.addCurso (curso);
   }
 

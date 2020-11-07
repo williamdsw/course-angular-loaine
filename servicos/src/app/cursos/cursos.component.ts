@@ -4,14 +4,13 @@ import { CursosService } from './cursos.service';
 
 @Component({
   selector: 'app-cursos',
-  templateUrl: './cursos.component.html',
-  styleUrls: ['./cursos.component.css']
+  templateUrl: './cursos.component.html'
 })
 export class CursosComponent implements OnInit {
 
   // FIELDS
 
-  cursos: string[] = [];
+  public cursos: string[] = [];
 
   // CONSTRUCTOR
 
@@ -25,7 +24,7 @@ export class CursosComponent implements OnInit {
       curso => { console.log (curso); },
     );*/
     CursosService.criouNovoCurso.subscribe (
-      //curso => this.cursos.push (curso)
+      // curso => this.cursos.push (curso)
       curso => console.log (curso)
     );
   }

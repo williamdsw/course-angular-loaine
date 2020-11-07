@@ -1,12 +1,30 @@
-<h5> Compartilhando um serviço entre componentes </h5>
+<article>
+    <header>
+        <h4> Compartilhando um serviço entre componentes </h4>
+    </header>
 
-<input type="text" #cursoInput>
-<button (click)="onAddCurso (cursoInput.value);"> Add Curso </button>
+    <section>
+        <input type="text" #cursoInput>
+        <button type="button" (click)="onAddCurso (cursoInput.value);"> 
+            Add Curso 
+        </button>
+    </section>
 
-<ul>
-    <li *ngFor="let curso of cursos">
-        {{ curso }}
-    </li>
-</ul>
+    <section>
+        <ul>
+            <li *ngFor="let curso of cursos">
+                {{ curso }}
+            </li>
+        </ul>
+    </section>
 
-<app-receber-curso-criado></app-receber-curso-criado>
+    <app-receber-curso-criado></app-receber-curso-criado>
+</article>
+
+
+
+
+
+
+
+

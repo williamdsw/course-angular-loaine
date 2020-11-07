@@ -7,10 +7,12 @@ export class CursosService {
 
     // FIELDS
 
-    static criouNovoCurso = new EventEmitter<string>();
-    emitirCursoCriado = new EventEmitter<string>();
+    public static criouNovoCurso = new EventEmitter<string>();
+    public emitirCursoCriado = new EventEmitter<string>();
 
-    private cursos: string[] = ['Angular 2', 'Java', 'Phonegap'];
+    private cursos: string[] = [
+        'Angular 2', 'Java', 'Phonegap'
+    ];
 
     // CONSTRUCTOR
 
@@ -18,16 +20,15 @@ export class CursosService {
 
     // HELPER FUNCTIONS
 
-    getCursos() {
+    public getCursos(): string[] {
         this.logService.consoleLog ('Obtendo lista de cursos');
         return this.cursos;
     }
 
-    addCurso(curso: string) {
+    public addCurso(curso: string): void {
         this.logService.consoleLog (`Criando um novo curso ${curso}`);
         this.cursos.push (curso);
         this.emitirCursoCriado.emit (curso);
         CursosService.criouNovoCurso.emit (curso);
     }
-
 }
