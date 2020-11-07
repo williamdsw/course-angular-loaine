@@ -7,7 +7,7 @@ export class CursosService {
 
   // FIELDS
 
-  cursos = [
+  public cursos = [
     { id: 1, nome: 'Angular 2' },
     { id: 2, nome: 'Java' },
     { id: 3, nome: 'PHP' },
@@ -21,11 +21,11 @@ export class CursosService {
 
   // HELPER FUNCTIONS
 
-  getCursos() {
+  public getCursos(): any[] {
     return this.cursos;
   }
 
-  getCursoById(id: number) {
+  public getCursoById(id: number): {} {
 
     if (id === undefined || id === null) {
       return null;

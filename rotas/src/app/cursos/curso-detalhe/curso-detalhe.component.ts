@@ -7,15 +7,14 @@ import { CursosService } from '../cursos.service';
 @Component({
   selector: 'app-curso-detalhe',
   templateUrl: './curso-detalhe.component.html',
-  styleUrls: ['./curso-detalhe.component.css']
 })
 export class CursoDetalheComponent implements OnInit, OnDestroy {
 
   // FIELDS
 
-  id: number;
-  inscricao: Subscription;
-  curso: any;
+  public id: number;
+  public inscricao$: Subscription;
+  public curso: any;
 
   // CONSTRUCTOR
 
@@ -27,7 +26,7 @@ export class CursoDetalheComponent implements OnInit, OnDestroy {
   // LIFE CYCLE HOOKS
 
   ngOnInit() {
-    this.inscricao = this.route.params.subscribe (
+    this.inscricao$ = this.route.params.subscribe (
       (params: any) => {
         const key = 'id';
         this.id = params[key];
@@ -44,7 +43,7 @@ export class CursoDetalheComponent implements OnInit, OnDestroy {
 
   // Desinscreve da inscricao criada
   ngOnDestroy() {
-    this.inscricao.unsubscribe ();
+    this.inscricao$.unsubscribe ();
   }
 
 }

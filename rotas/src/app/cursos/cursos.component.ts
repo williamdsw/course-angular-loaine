@@ -13,9 +13,9 @@ export class CursosComponent implements OnInit, OnDestroy {
 
   // FIELDS
 
-  cursos: any[];
-  pagina: number;
-  inscricao: Subscription;
+  public cursos: any[];
+  public pagina: number;
+  public inscricao$: Subscription;
 
   // CONSTRUCTORS
 
@@ -29,7 +29,7 @@ export class CursosComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.cursos = this.cursosService.getCursos ();
 
-    this.inscricao = this.route.queryParams.subscribe (
+    this.inscricao$ = this.route.queryParams.subscribe (
       (queryParams: any) => {
         this.pagina = queryParams['pagina'];
       },
@@ -38,11 +38,13 @@ export class CursosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe ();
+    this.inscricao$.unsubscribe ();
   }
 
-  proximaPagina() {
-    this.router.navigate (['/cursos'], { queryParams: { 'pagina': ++this.pagina }});
+  public proximaPagina(): void {
+    this.router.navigate (['/cursos'],
+      { queryParams: { pagina: ++this.pagina }
+    });
   }
 
 }

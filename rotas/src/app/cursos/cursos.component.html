@@ -1,12 +1,19 @@
-<div>
-    <p> Lista de Cursos </p>
-    <p> Página: {{ pagina }} </p>
+<article>
+    <header>
+        <h2>
+            Lista de Cursos
+        </h2>
+    </header>
 
-    <mat-nav-list>
-        <mat-list-item *ngFor="let curso of cursos">
-            <a [routerLink]="['/cursos', curso.id]" matLine> {{ curso.nome }}</a>
-        </mat-list-item>
-    </mat-nav-list>
-
-    <button mat-raised-button (click)="proximaPagina ();"> Próxima Página </button>
-</div>
+    <div class="container">
+        <p> Página: {{ pagina }} </p>
+    
+        <mat-nav-list>
+            <mat-list-item *ngFor="let curso of cursos">
+                <a [routerLink]="['/cursos', curso.id]" matLine> {{ curso.nome }}</a>
+            </mat-list-item>
+        </mat-nav-list>
+    
+        <button mat-raised-button (click)="proximaPagina ();"> Próxima Página </button>
+    </div>
+</article>
