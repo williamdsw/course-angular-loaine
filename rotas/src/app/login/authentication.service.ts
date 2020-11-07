@@ -11,8 +11,9 @@ export class AuthenticationService {
   // FIELDS
 
   private usuarioAuthenticado: boolean;
-
-  mostrarMenuEmitter = new EventEmitter<boolean>();
+  public mostrarMenuEmitter = new EventEmitter<boolean>();
+  private fixedUsername = 'usuario@email.com';
+  private fixedPassword = '123456';
 
   // CONSTRUCTOR
 
@@ -22,18 +23,18 @@ export class AuthenticationService {
 
   // HELPER FUNCTIONS
 
-  fazerLogin(usuario: Usuario) {
-    if (usuario.nome === 'usuario@email.com' && usuario.senha === '123456') {
+  public fazerLogin(usuario: Usuario) {
+    if (usuario.nome === this.fixedUsername && usuario.senha === this.fixedPassword) {
       this.usuarioAuthenticado = true;
-      this.mostrarMenuEmitter.emit (true);
+      this.mostrarMenuEmitter.emit (this.usuarioAuthenticado);
       this.router.navigate(['/']);
     } else {
       this.usuarioAuthenticado = false;
-      this.mostrarMenuEmitter.emit (false);
+      this.mostrarMenuEmitter.emit (this.usuarioAuthenticado);
     }
   }
 
-  usuarioEstaAutenticado() {
+  public usuarioEstaAutenticado(): boolean {
     return this.usuarioAuthenticado;
   }
 }

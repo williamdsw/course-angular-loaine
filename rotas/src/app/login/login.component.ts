@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   // HELPER FUNCTIONS
 
-  fazerLogin() {
+  public fazerLogin(): void {
     console.log (this.usuario);
     this.authenticationService.fazerLogin (this.usuario);
   }
