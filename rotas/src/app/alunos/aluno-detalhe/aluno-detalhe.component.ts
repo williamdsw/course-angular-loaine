@@ -13,7 +13,7 @@ export class AlunoDetalheComponent implements OnInit, OnDestroy {
 
   // FIELDS
 
-  private aluno: any;
+  public aluno: any;
   private inscricao: Subscription;
 
   // CONSTRUCTOR

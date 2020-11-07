@@ -14,7 +14,7 @@ export class AlunoFormularioComponent implements OnInit, OnDestroy, IFormCanDeac
 
   // FIELDS
 
-  protected aluno: any;
+  public aluno: any;
   private inscricao: Subscription;
   private formMudou: boolean;
 

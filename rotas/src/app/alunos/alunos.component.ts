@@ -11,7 +11,7 @@ export class AlunosComponent implements OnInit {
 
   // FIELDS
 
-  private alunos: any[] = [];
+  public alunos: any[] = [];
 
   // CONSTRUCTOR
 

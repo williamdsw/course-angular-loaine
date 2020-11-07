@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   // FIELDS
 
-  protected usuario: Usuario = new Usuario ();
+  public usuario: Usuario = new Usuario ();
 
   // CONSTRUCTORS
 

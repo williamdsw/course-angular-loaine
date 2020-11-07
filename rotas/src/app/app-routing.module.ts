@@ -8,8 +8,7 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { CursosGuard } from './guards/cursos.guard';
 
-const ROUTES: Routes = [
-  {
+const ROUTES: Routes = [{
     path: 'cursos',
     loadChildren: () => import ('./cursos/cursos.module').then (mod => mod.CursosModule),
     canActivate: [AuthenticationGuard], // verifica rota base

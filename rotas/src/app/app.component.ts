@@ -4,13 +4,12 @@ import { AuthenticationService } from './login/authentication.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
 
-  title = 'rotas';
-  mostrarMenu: boolean;
+  public title = 'rotas';
+  public mostrarMenu: boolean;
 
   constructor(private authenticationService: AuthenticationService) {
     this.mostrarMenu = false;
@@ -18,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.mostrarMenuEmitter.subscribe (
-      mostrar => this.mostrarMenu = mostrar
+      (mostrar) => this.mostrarMenu = mostrar
     );
   }
 }
