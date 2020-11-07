@@ -1,16 +1,23 @@
-<mat-card *ngIf="aluno">
-    <mat-card-title>
-        <h5> Detalhes do Aluno </h5>
-    </mat-card-title>
+<section>
+    <mat-card *ngIf="aluno">
+        <mat-card-title>
+            <header>
+                <h5> Detalhes do Aluno </h5>
+            </header>
+        </mat-card-title>
+    
+        <mat-card-content>
+            <p> Id: {{ aluno.id }} </p>
+            <p> Nome: {{ aluno.nome }} </p>
+            <p> Email: {{ aluno.email }} </p>
+        </mat-card-content>
+    
+        <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="editarContato ();"> 
+                Editar 
+            </button>
+        </mat-card-actions>
+    
+    </mat-card>
+</section>
 
-    <mat-card-content>
-        <p> Id: {{ aluno.id }} </p>
-        <p> Nome: {{ aluno.nome }} </p>
-        <p> Email: {{ aluno.email }} </p>
-    </mat-card-content>
-
-    <mat-card-actions>
-        <button mat-raised-button color="warn" (click)="editarContato ();"> Editar </button>
-    </mat-card-actions>
-
-</mat-card>

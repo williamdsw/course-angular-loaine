@@ -20,6 +20,16 @@ export class AlunosService {
     { id: 8, nome: 'Aluno 08', email: 'aluno08@email.com'},
     { id: 9, nome: 'Aluno 09', email: 'aluno09@email.com'},
     { id: 10, nome: 'Aluno 10', email: 'aluno10@email.com'},
+    { id: 11, nome: 'Aluno 11', email: 'aluno11@email.com'},
+    { id: 12, nome: 'Aluno 12', email: 'aluno12@email.com'},
+    { id: 13, nome: 'Aluno 13', email: 'aluno13@email.com'},
+    { id: 14, nome: 'Aluno 14', email: 'aluno14@email.com'},
+    { id: 15, nome: 'Aluno 15', email: 'aluno15@email.com'},
+    { id: 16, nome: 'Aluno 16', email: 'aluno16@email.com'},
+    { id: 17, nome: 'Aluno 17', email: 'aluno17@email.com'},
+    { id: 18, nome: 'Aluno 18', email: 'aluno18@email.com'},
+    { id: 19, nome: 'Aluno 19', email: 'aluno19@email.com'},
+    { id: 20, nome: 'Aluno 20', email: 'aluno20@email.com'},
   ];
 
   // CONSTRUCTOR
@@ -32,7 +42,7 @@ export class AlunosService {
     return this.alunos;
   }
 
-  getAlunoById(id: number) {
+  public getAlunoById(id: number): Aluno {
     if (id === undefined || id === null) {
       return null;
     }

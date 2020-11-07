@@ -1,25 +1,29 @@
-<div class="container">
 
-    <h3> Criar / Editar Aluno </h3>
-
+<!-- Create | Update Student -->
+<section class="container">
+    <header>
+        <h3> Criar / Editar Aluno </h3>
+    </header>
+    
     <form>
         <!-- id -->
         <mat-form-field>
             <mat-label> # </mat-label>
-            <input name="id" matInput required disabled [(ngModel)]="aluno.id">
+            <input name="id" required disabled matInput [(ngModel)]="aluno.id">
         </mat-form-field>
 
         <!-- nome -->
         <mat-form-field>
             <mat-label> Nome </mat-label>
-            <input name="nome" matInput required [(ngModel)]="aluno.nome" (input)="onInput ();">
+            <input name="nome" required matInput [(ngModel)]="aluno.nome" (input)="onInput ();">
         </mat-form-field>
 
         <!-- email -->
         <mat-form-field>
             <mat-label> Email </mat-label>
-            <input name="email" matInput required [(ngModel)]="aluno.email">
+            <input name="email" required matInput [(ngModel)]="aluno.email">
         </mat-form-field>
 
     </form>
-</div>
+</section>
+

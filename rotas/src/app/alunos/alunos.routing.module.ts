@@ -15,9 +15,20 @@ const ALUNOS_ROUTES: Routes = [
         path: '', component: AlunosComponent,
         canActivateChild: [AlunosGuard],
         children: [ // rotas filhas
-            { path: 'novo', component: AlunoFormularioComponent },
-            { path: ':id', component: AlunoDetalheComponent, resolve: { aluno : AlunoDetalheResolver} },
-            { path: ':id/editar', component: AlunoFormularioComponent, canDeactivate: [AlunosDeactivateGuard] },
+            {
+                path: 'novo',
+                component: AlunoFormularioComponent
+            },
+            {
+                path: ':id',
+                component: AlunoDetalheComponent,
+                resolve: { aluno : AlunoDetalheResolver}
+            },
+            {
+                path: ':id/editar',
+                component: AlunoFormularioComponent,
+                canDeactivate: [AlunosDeactivateGuard]
+            },
         ]
     },
 ];

@@ -10,3 +10,8 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif; 
     background: grey;
 }
+
+h2 {
+    color: white;
+    text-align: center;
+}

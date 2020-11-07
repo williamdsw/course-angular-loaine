@@ -6,8 +6,7 @@ import { AlunosService } from './../alunos.service';
 
 @Component({
   selector: 'app-aluno-detalhe',
-  templateUrl: './aluno-detalhe.component.html',
-  styleUrls: ['./aluno-detalhe.component.css']
+  templateUrl: './aluno-detalhe.component.html'
 })
 export class AlunoDetalheComponent implements OnInit, OnDestroy {
 
@@ -47,7 +46,7 @@ export class AlunoDetalheComponent implements OnInit, OnDestroy {
 
   // HELPER FUNCTIONS
 
-  editarContato() {
+  public editarContato(): void {
     this.router.navigate (['/alunos', this.aluno.id, 'editar']);
   }
 

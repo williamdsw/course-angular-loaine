@@ -1,7 +1,8 @@
-import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { IFormCanDeactivate } from './../../guards/iform-candeactivate';
 
 import { AlunosService } from './../alunos.service';
 
@@ -49,12 +50,12 @@ export class AlunoFormularioComponent implements OnInit, OnDestroy, IFormCanDeac
 
   // HELPER FUNCTIONS
 
-  onInput() {
+  public onInput(): void {
     this.formMudou = true;
     console.log ('mudou');
   }
 
-  podeMudarRota() {
+  public podeMudarRota(): boolean {
 
     if (this.formMudou) {
       confirm ('Tem certeza que deseja sair dessa página?');
@@ -65,9 +66,7 @@ export class AlunoFormularioComponent implements OnInit, OnDestroy, IFormCanDeac
 
   // OVERRIDED FUNCTIONS
 
-  podeDesativar() {
+  public podeDesativar(): boolean {
     return this.podeMudarRota ();
   }
-
-
 }
