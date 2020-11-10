@@ -33,16 +33,16 @@ body {
 
 .container {
     height: 100%;
+    padding: 3rem;
 }
 
 .box {
     position: absolute;
     opacity: 1;
-    padding: 60px 50px 40px 50px;
     width: 100%;
     max-width: 600px;
     transform: scale(1);
-    margin: 10em auto;
+    margin: 2rem auto;
 }
 
 .box mat-card-header {
@@ -68,6 +68,6 @@ body {
 }
 
 .mat-card {
-    background-color: darkcyan;
-    border: 3px solid turquoise;
+    background-color: darkolivegreen;
+    border: 3px solid olive;
 }

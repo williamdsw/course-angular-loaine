@@ -1,23 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 @Component({
   selector: 'app-template-form',
-  templateUrl: './template-form.component.html',
-  styleUrls: ['./template-form.component.css']
+  templateUrl: './template-form.component.html'
 })
 export class TemplateFormComponent implements OnInit, OnDestroy {
 
   // FIELDS
 
-  usuario: any = {
+  public usuario: any = {
     nome: null,
     email: null
   };
 
-  private inscricao: Subscription;
+  private inscricao$: Subscription;
   private postUrl: string;
 
   // CONSTRUCTOR
@@ -25,24 +25,24 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
   constructor(
     private httpClient: HttpClient,
     private consultaCepService: ConsultaCepService) {
-    this.postUrl = 'https://httpbin.org/post';
+      this.postUrl = 'https://httpbin.org/post';
   }
 
   // LIFE CYCLE HOOKS
 
   ngOnInit() {
-    this.inscricao = new Subscription ();
+    this.inscricao$ = new Subscription ();
   }
 
   ngOnDestroy() {
-    this.inscricao.unsubscribe ();
+    this.inscricao$.unsubscribe ();
   }
 
   // HELPER FUNCTIONS
 
-  onSubmit(formulario) {
+  public onSubmit(formulario): void {
     console.log(formulario);
-    this.inscricao = this.httpClient.post (this.postUrl, JSON.stringify (formulario.value)).subscribe (
+    this.inscricao$ = this.httpClient.post (this.postUrl, JSON.stringify (formulario.value)).subscribe (
       response => {
         console.log (response);
         formulario.form.reset ();
@@ -50,18 +50,16 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
       error => { console.log (error); });
   }
 
-  consultaCEP(cep: string, form) {
-
+  public consultaCEP(cep: string, form): void {
     if (cep != null && cep !== '') {
-      this.inscricao = this.consultaCepService.consultaCEP (cep).subscribe (
-        response => { this.populaDadosForm (response, form); },
-        error => { console.log (error); }
-      )
+      this.inscricao$ = this.consultaCepService.consultaCEP(cep).subscribe(
+        response => { this.populaDadosForm(response, form); },
+        error => { console.log(error); }
+      );
     }
   }
 
-  populaDadosForm(dados, formulario) {
-
+  public populaDadosForm(dados, formulario): void {
     if (!('erro' in dados)) {
       formulario.form.patchValue({
         endereco: {
@@ -73,13 +71,14 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
           estado: dados.uf
         }
       });
-    } else {
+    }
+    else {
       this.resetaDadosFormulario (formulario);
       alert ('CEP não encontrado!');
     }
   }
 
-  resetaDadosFormulario(formulario) {
+  public resetaDadosFormulario(formulario) {
     formulario.form.patchValue ({
       endereco: {
         rua: null,
@@ -90,5 +89,4 @@ export class TemplateFormComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }

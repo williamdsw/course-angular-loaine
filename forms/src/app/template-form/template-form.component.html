@@ -1,120 +1,125 @@
-<div>
-    <mat-card class="box">
-        <mat-card-header>
-            <mat-card-title> Template Form </mat-card-title>
-        </mat-card-header>
-
-        <mat-card-content>
-            <form #meuForm="ngForm" (ngSubmit)="onSubmit (meuForm);">
-
-                <mat-tab-group backgroundColor="accent" color="warn">
-                    <mat-tab label="Login">
-                
-                        <!-- nome -->
-                        <mat-form-field class="field-full-width" color="accent">
-                            <mat-label> Nome: </mat-label>
-                
-                            <input type="text" name="nome" required #inputNome="ngModel" matInput [ngModel]="usuario.nome">
-                
-                            <mat-error> Informe seu nome! </mat-error>
-                        </mat-form-field>
-                
-                        <!-- email -->
-                        <mat-form-field class="field-full-width" color="accent">
-                            <mat-label> Email: </mat-label>
-                
-                            <input type="email" name="email" required #inputEmail="ngModel" matInput email [ngModel]="usuario.email">
-                
-                            <mat-error *ngIf="!inputEmail.value">
-                                Email é obrigatório!
-                            </mat-error>
-                
-                            <mat-error *ngIf="inputEmail.value && !inputEmail.valid">
-                                Insira um email válido!
-                            </mat-error>
-                        </mat-form-field>
-                    </mat-tab>
-
-                    <mat-tab label="Endereço">
-
-                        <!-- ngModelGroup = agrupa todos os campos em um objeto so -->
-                        <div ngModelGroup="endereco">
-                            <table class="table-full-width">
-                                <tr>
-                                    <!-- CEP -->
-                                    <td>
-                                        <mat-form-field class="field-full-width" color="accent">
-                                            <mat-label> CEP: </mat-label>
-                                            <input type="text" name="cep" required 
-                                                   #inputCEP="ngModel" matInput [ngModel]=""
-                                                   (blur)="consultaCEP (inputCEP.value, meuForm);">
-                                            <mat-error> Informe o CEP </mat-error>
-                                        </mat-form-field>
-                                    </td>
-
-                                    <!-- numero -->
-                                    <td>
-                                        <mat-form-field class="field-full-width" color="accent">
-                                            <mat-label> Número: </mat-label>
-                                            <input type="text" name="numero" required #inputNumero="ngModel" matInput [ngModel]="">
-                                            <mat-error> Informe o número do local </mat-error>
-                                        </mat-form-field>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <!-- complemento -->
+<main>
+    <article>
+        <mat-card class="box">
+            <mat-card-header>
+                <mat-card-title> Template Form </mat-card-title>
+            </mat-card-header>
+    
+            <mat-card-content>
+                <form #meuForm="ngForm" (ngSubmit)="onSubmit (meuForm);">
+                    <mat-tab-group backgroundColor="accent" color="warn">
+                        <mat-tab label="Login">
+                    
+                            <!-- nome -->
                             <mat-form-field class="field-full-width" color="accent">
-                                <mat-label> Complemento: </mat-label>
-                                <input type="text" name="complemento" #inputComplemento="ngModel" matInput [ngModel]="">
+                                <mat-label> Nome: </mat-label>
+
+                                <input type="text" name="nome" required 
+                                       #inputNome="ngModel" matInput [ngModel]="usuario.nome">
+                                       
+                                <mat-error> Informe seu nome! </mat-error>
                             </mat-form-field>
+                    
+                            <!-- email -->
+                            <mat-form-field class="field-full-width" color="accent">
+                                <mat-label> Email: </mat-label>
 
-                            <table class="table-full-width">
-                                <tr>
-                                    <!-- rua -->
-                                    <td>
-                                        <mat-form-field class="field-full-width" color="accent">
-                                            <mat-label> Rua: </mat-label>
-                                            <input type="text" name="rua" required #inputRua="ngModel" matInput [ngModel]="">
-                                            <mat-error> Informe a rua </mat-error>
-                                        </mat-form-field>
-                                    </td>
+                                <input type="email" name="email" required 
+                                       #inputEmail="ngModel" matInput email [ngModel]="usuario.email">
 
-                                    <!-- bairro -->
-                                    <td>
-                                        <mat-form-field class="field-full-width" color="accent">
-                                            <mat-label> Bairro: </mat-label>
-                                            <input type="text" name="bairro" required #inputBairro="ngModel" matInput [ngModel]="">
-                                            <mat-error> Informe o bairro </mat-error>
-                                        </mat-form-field>
-                                    </td>
+                                <mat-error *ngIf="!inputEmail.value">
+                                    Email é obrigatório!
+                                </mat-error>
 
-                                    <!-- cidade -->
-                                    <td>
-                                        <mat-form-field class="field-full-width" color="accent">
-                                            <mat-label> Cidade: </mat-label>
-                                            <input type="text" name="cidade" required #inputCidade="ngModel" matInput [ngModel]="">
-                                            <mat-error> Informe a cidade </mat-error>
-                                        </mat-form-field>
-                                    </td>
-                                </tr>
-                            </table>
-
-                        </div>
-                    </mat-tab>
-                </mat-tab-group>
-
-                <div align="end" class="field-full-width">
-                    <button mat-flat-button color="warn" [disabled]="meuForm.invalid"> Enviar </button>    
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
-
-    <!-- output -->
-    <mat-card class="box">
-        <mat-card-content>
-            <app-form-debug [form]="meuForm"></app-form-debug>
-        </mat-card-content>
-    </mat-card>
-</div>
+                                <mat-error *ngIf="inputEmail.value && !inputEmail.valid">
+                                    Insira um email válido!
+                                </mat-error>
+                            </mat-form-field>
+                        </mat-tab>
+    
+                        <mat-tab label="Endereço">
+    
+                            <!-- ngModelGroup = agrupa todos os campos em um objeto so -->
+                            <div ngModelGroup="endereco">
+                                <table class="table-full-width">
+                                    <tr>
+                                        <!-- CEP -->
+                                        <td>
+                                            <mat-form-field class="field-full-width" color="accent">
+                                                <mat-label> CEP: </mat-label>
+                                                <input type="text" name="cep" required 
+                                                        #inputCEP="ngModel" matInput [ngModel]=""
+                                                        (blur)="consultaCEP (inputCEP.value, meuForm);">
+                                                <mat-error> Informe o CEP </mat-error>
+                                            </mat-form-field>
+                                        </td>
+    
+                                        <!-- numero -->
+                                        <td>
+                                            <mat-form-field class="field-full-width" color="accent">
+                                                <mat-label> Número: </mat-label>
+                                                <input type="text" name="numero" required #inputNumero="ngModel" matInput [ngModel]="">
+                                                <mat-error> Informe o número do local </mat-error>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                </table>
+    
+                                <!-- complemento -->
+                                <mat-form-field class="field-full-width" color="accent">
+                                    <mat-label> Complemento: </mat-label>
+                                    <input type="text" name="complemento" #inputComplemento="ngModel" matInput [ngModel]="">
+                                </mat-form-field>
+    
+                                <table class="table-full-width">
+                                    <tr>
+                                        <!-- rua -->
+                                        <td>
+                                            <mat-form-field class="field-full-width" color="accent">
+                                                <mat-label> Rua: </mat-label>
+                                                <input type="text" name="rua" required #inputRua="ngModel" matInput [ngModel]="">
+                                                <mat-error> Informe a rua </mat-error>
+                                            </mat-form-field>
+                                        </td>
+    
+                                        <!-- bairro -->
+                                        <td>
+                                            <mat-form-field class="field-full-width" color="accent">
+                                                <mat-label> Bairro: </mat-label>
+                                                <input type="text" name="bairro" required #inputBairro="ngModel" matInput [ngModel]="">
+                                                <mat-error> Informe o bairro </mat-error>
+                                            </mat-form-field>
+                                        </td>
+    
+                                        <!-- cidade -->
+                                        <td>
+                                            <mat-form-field class="field-full-width" color="accent">
+                                                <mat-label> Cidade: </mat-label>
+                                                <input type="text" name="cidade" required #inputCidade="ngModel" matInput [ngModel]="">
+                                                <mat-error> Informe a cidade </mat-error>
+                                            </mat-form-field>
+                                        </td>
+                                    </tr>
+                                </table>
+    
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+    
+                    <div align="end" class="field-full-width">
+                        <button mat-flat-button color="warn" [disabled]="meuForm.invalid"> 
+                            Enviar 
+                        </button>    
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+        
+        <!-- output -->
+        <mat-card class="box">
+            <mat-card-content>
+                <app-form-debug [form]="meuForm"></app-form-debug>
+            </mat-card-content>
+        </mat-card>
+    </article>
+</main>
