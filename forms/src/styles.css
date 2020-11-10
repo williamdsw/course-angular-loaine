@@ -1,5 +1,7 @@
 @import '@angular/material/prebuilt-themes/purple-green.css';
 
+/* || global */
+
 html, body {
     height: 100%;
     margin: 0;
@@ -10,6 +12,8 @@ body {
     font-family: 'Roboto', sans-serif;
     min-width: 100vh;
 }
+
+/* || header */
 
 .app-header {
     justify-content: start;
@@ -24,6 +28,8 @@ body {
 .app-header span {
     margin: auto 10px;
 }
+
+/* || container & form box */
 
 .container {
     height: 100%;
