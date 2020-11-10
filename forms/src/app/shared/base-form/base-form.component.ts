@@ -20,11 +20,11 @@ export abstract class BaseFormComponent implements OnInit {
 
   // ABSTRACT FUNCTIONS
 
-  abstract submit();
+  public abstract submit(): void;
 
   // HELPER FUNCTIONS
 
-  onSubmit() {
+  public onSubmit(): void {
     if (this.formulario.valid) {
       this.submit();
     }
@@ -34,7 +34,7 @@ export abstract class BaseFormComponent implements OnInit {
     }
   }
 
-  verificaValidacoesForm(formGroup: FormGroup | FormArray) {
+  public verificaValidacoesForm(formGroup: FormGroup | FormArray): void {
     Object.keys (formGroup.controls).forEach (campo => {
       const controle = formGroup.get (campo);
       controle.markAsDirty ();
@@ -46,13 +46,12 @@ export abstract class BaseFormComponent implements OnInit {
     });
   }
 
-  verificaValidTouched(campo: string) {
+  public verificaValidTouched(campo: string): boolean {
     const formCampo = this.formulario.get (campo);
     return !formCampo.valid;
   }
 
-  verificaTemError(campo: string, error: string) {
-
+  public verificaTemError(campo: string, error: string): boolean {
     if (campo && error) {
       const formCampo = this.formulario.get (campo);
       return formCampo.hasError (error);
@@ -61,7 +60,7 @@ export abstract class BaseFormComponent implements OnInit {
     return false;
   }
 
-  verificaEmailInvalido() {
+  public verificaEmailInvalido(): boolean | void {
     const email = this.formulario.get ('email');
     if (email.errors) {
       const key = 'email';
@@ -69,11 +68,11 @@ export abstract class BaseFormComponent implements OnInit {
     }
   }
 
-  getCampo(campo: string): FormArray {
+  public getCampo(campo: string): FormArray {
     return this.formulario.get (campo) as FormArray;
   }
 
-  resetar() {
+  public resetar() {
     this.formulario.reset ();
   }
 }

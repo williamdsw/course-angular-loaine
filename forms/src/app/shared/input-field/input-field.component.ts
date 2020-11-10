@@ -11,22 +11,21 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'app-input-field',
   templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.css'],
   providers: [INPUT_FIELD_VALUE_ACCESSOR]
 })
 export class InputFieldComponent implements ControlValueAccessor {
 
-  @Input() classeCSS;
-  @Input() id: string;
-  @Input() label: string;
-  @Input() type: string = 'text';
-  @Input() placeholder: string = '';
-  @Input() control;
-  @Input() isReadOnly: boolean = false;
+  @Input() public classeCSS;
+  @Input() public id: string;
+  @Input() public label: string;
+  @Input() public type = 'text';
+  @Input() public placeholder = '';
+  @Input() public control;
+  @Input() public isReadOnly = false;
 
   private innerValue: any;
 
-  get value() {
+  get value(): any {
     return this.innerValue;
   }
 
@@ -41,20 +40,19 @@ export class InputFieldComponent implements ControlValueAccessor {
   onChangeCallback: (_: any) => void = () => {};
   onTouchedCallback: (_: any) => void = () => {};
 
-  writeValue(v: any): void {
+  public writeValue(v: any): void {
     this.value = v;
   }
 
-  registerOnChange(fn: any): void {
+  public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
 
-  setDisabledState?(isDisabled: boolean): void {
+  public setDisabledState?(isDisabled: boolean): void {
     this.isReadOnly = isDisabled;
   }
- 
 }

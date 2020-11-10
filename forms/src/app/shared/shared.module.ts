@@ -9,13 +9,12 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { InputFieldComponent } from './input-field/input-field.component';
-import { BaseFormComponent } from './base-form/base-form.component';
 
 @NgModule({
   declarations: [
-    FormDebugComponent, 
-    ErrorMessageComponent, 
-    InputFieldComponent, 
+    FormDebugComponent,
+    ErrorMessageComponent,
+    InputFieldComponent,
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export class FormValidations {
 
-    static requiredMinCheckbox(min = 1) {
+    public static requiredMinCheckbox(min = 1) {
         const validator = (formArray: FormArray) => {
 
             const totalChecked = formArray.controls
@@ -14,7 +14,7 @@ export class FormValidations {
         return validator;
     }
 
-    static cepValidator(control: FormControl) {
+    public static cepValidator(control: FormControl) {
 
         const CEP = control.value;
         if (CEP && CEP !== '') {
@@ -25,7 +25,7 @@ export class FormValidations {
         return null;
     }
 
-    static equalsTo(otherField: string) {
+    public static equalsTo(otherField: string) {
         const validator = (formControl: FormControl) => {
 
             // Caso campo nao for informado
@@ -33,7 +33,7 @@ export class FormValidations {
                 throw new Error ('É necessário informar um campo.');
             }
 
-            const root = (<FormGroup> formControl.root);
+            const root = (formControl.root as FormGroup);
 
             // Caso campo ou root formGroup nao forem renderizados
             if (!formControl.root || !root.controls) {
@@ -44,7 +44,7 @@ export class FormValidations {
 
             // Caso campo for invalido
             if (!field) {
-                throw new Error ('É necessário informar um campo válido.')
+                throw new Error('É necessário informar um campo válido.');
             }
 
             // Caso valores dos campos forem diferentes
@@ -58,13 +58,13 @@ export class FormValidations {
         return validator;
     }
 
-    static getErrorMessage(fieldName: string, validatorName: string, validatorValue?: any) {
+    public static getErrorMessage(fieldName: string, validatorName: string, validatorValue?: any): {} {
         const config = {
-            'required': `${fieldName} é obrigatório (a).`,
-            'minlength': `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres`,
-            'maxlength': `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres`,
-            'cepInvalido': 'CEP inválido.',
-            'equalsTo': `${fieldName} não são iguais.`
+            required: `${fieldName} é obrigatório (a).`,
+            minlength: `${fieldName} precisa ter no mínimo ${validatorValue.requiredLength} caracteres`,
+            maxlength: `${fieldName} precisa ter no máximo ${validatorValue.requiredLength} caracteres`,
+            cepInvalido: 'CEP inválido.',
+            equalsTo: `${fieldName} não são iguais.`
         };
 
         return config[validatorName];

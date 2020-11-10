@@ -1,6 +1,6 @@
 
 export interface Cidade {
-    id: number,
-    nome: string,
-    estado: number
+    id: number;
+    nome: string;
+    estado: number;
 }
