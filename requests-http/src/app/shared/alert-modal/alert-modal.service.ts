@@ -48,6 +48,6 @@ export class AlertModalService {
       bsModalRef.content.okButtonText = okButtonText;
     }
 
-    return (bsModalRef.content as ConfirmModalComponent).confirmResult;
+    return (bsModalRef.content as ConfirmModalComponent).confirmResult$;
   }
 }
