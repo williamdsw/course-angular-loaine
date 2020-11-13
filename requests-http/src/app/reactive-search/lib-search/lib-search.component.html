@@ -1,31 +1,47 @@
-<div class="container search-table">
-    <div class="search-box">
-        <div class="row">
-            <!-- input -->
-            <div class="col-md-9">
-                <input type="text" id="myInput" class="form-control" placeholder="Pesquisar libs" [formControl]="queryField">
+<main>
+    <article>
+        <div class="container-fluid search-table">
+            <header>
+                <h1 class="text-center"> Busca Reativa </h1>
+            </header>
+
+            <!-- inputs -->
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-9">
+                        <input type="text" id="myInput" class="form-control" placeholder="Pesquisar libs" [formControl]="queryField">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-lg btn-success w-100" (click)="onSearch ();"> 
+                            Pesquisar 
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col-auto">
-                <button type="button" class="btn btn-lg btn-success" (click)="onSearch ();"> Pesquisar </button>
+
+            <!-- result -->
+            <div class="search-list">
+                <header>
+                    <h3> {{ total }} Bibliotecas Encontradas </h3>
+                </header>
+
+                <div class="responsive-table">
+                    <table id="myTable" class="table">
+                        <thead>
+                            <tr>
+                                <th> Nome </th>
+                                <th> Versão </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let result of results$ | async">
+                                <td> {{ result.name }} </td>
+                                <td> {{ result.version }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="search-list">
-        <h3> {{ total }} Bibliotecas Encontradas </h3>
-        <table id="myTable" class="table">
-            <thead>
-                <tr>
-                    <th> Nome </th>
-                    <th> Versão </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let result of results$ | async">
-                    <td> {{ result.name }} </td>
-                    <td> {{ result.version }} </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+    </article>
+</main>

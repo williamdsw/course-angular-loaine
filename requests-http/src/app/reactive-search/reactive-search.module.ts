@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ReactiveSearchRoutingModule } from './reactive-search-routing.module';
 import { LibSearchComponent } from './lib-search/lib-search.component';
 
-
 @NgModule({
   declarations: [LibSearchComponent],
   imports: [

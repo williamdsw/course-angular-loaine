@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { 
-  tap, 
-  map, 
-  filter, 
-  distinctUntilChanged, 
-  debounceTime, 
-  switchMap } from 'rxjs/operators';
+import {
+  tap,
+  map,
+  filter,
+  distinctUntilChanged,
+  debounceTime,
+  switchMap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-lib-search',
@@ -17,12 +18,15 @@ import {
 })
 export class LibSearchComponent implements OnInit {
 
-  queryField = new FormControl ();
-  readonly SEARCH_URL: string = 'https://api.cdnjs.com/libraries';
-  results$: Observable<any>;
-  total: number = 0;
-  readonly FIELDS: string[] = [ 'name', 'description', 'version', 'homepage' ];
-  
+  private readonly SEARCH_URL: string = 'https://api.cdnjs.com/libraries';
+  private readonly FIELDS: string[] = [
+    'name', 'description', 'version', 'homepage'
+  ];
+
+  public queryField = new FormControl ();
+  public results$: Observable<any>;
+  public total = 0;
+
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -42,9 +46,9 @@ export class LibSearchComponent implements OnInit {
     );
   }
 
-  onSearch() {
-    let value = this.queryField.value;
-    if (value && (value = value.trim ()) !== '') {
+  public onSearch(): void {
+    const value = this.queryField.value;
+    if ((value && value.trim ()) !== '') {
 
       // Monta parametros da URL
       let params = new HttpParams ();
