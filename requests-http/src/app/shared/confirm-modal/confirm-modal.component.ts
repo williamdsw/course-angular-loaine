@@ -4,34 +4,33 @@ import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-confirm-modal',
-  templateUrl: './confirm-modal.component.html',
-  styleUrls: ['./confirm-modal.component.scss']
+  templateUrl: './confirm-modal.component.html'
 })
 export class ConfirmModalComponent implements OnInit {
 
-  @Input() title: string;
-  @Input() body: string;
-  @Input() cancelButtonText: string = 'Não';
-  @Input() okButtonText: string = 'Sim';
+  @Input() public title: string;
+  @Input() public body: string;
+  @Input() public cancelButtonText = 'Não';
+  @Input() public okButtonText = 'Sim';
 
-  confirmResult: Subject<boolean>;
+  public confirmResult$: Subject<boolean>;
 
   constructor(private bsModalRef: BsModalRef) { }
 
   ngOnInit() {
-    this.confirmResult = new Subject ();
+    this.confirmResult$ = new Subject ();
   }
 
-  private confirmAndClose (value: boolean) {
+  private confirmAndClose(value: boolean): void {
     this.bsModalRef.hide ();
-    this.confirmResult.next (value);
+    this.confirmResult$.next (value);
   }
 
-  onClose() {
+  public onClose(): void {
     this.confirmAndClose (false);
   }
 
-  onConfirm() {
+  public onConfirm(): void {
     this.confirmAndClose (true);
   }
 }

@@ -1,10 +1,10 @@
+import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { pipe } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
-import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 
 export function filterResponse<T>() {
     return pipe (
-        filter ((event: HttpEvent<T>) => event.type === HttpEventType.Response), //verifica tipo de Response
+        filter ((event: HttpEvent<T>) => event.type === HttpEventType.Response), // verifica tipo de Response
         map ((response: HttpResponse<T>) => response.body)   // retorna apenas o corpo
     );
 }

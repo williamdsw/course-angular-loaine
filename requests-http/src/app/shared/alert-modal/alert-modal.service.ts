@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 import { AlertModalComponent } from './alert-modal.component';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Subject } from 'rxjs';
 
 enum AlertTypes {
   DANGER = 'danger',
@@ -15,9 +17,8 @@ export class AlertModalService {
 
   constructor(private modalService: BsModalService) { }
 
-  private showAlert(message: string, type: AlertTypes, dismissTimetout?: number)
-  {
-    const bsModalRef: BsModalRef = this.modalService.show (AlertModalComponent)
+  private showAlert(message: string, type: AlertTypes, dismissTimetout?: number) {
+    const bsModalRef: BsModalRef = this.modalService.show(AlertModalComponent);
     bsModalRef.content.type = type;
     bsModalRef.content.message = message;
 
@@ -26,15 +27,15 @@ export class AlertModalService {
     }
   }
 
-  showAlertDanger(message: string){
+  public showAlertDanger(message: string): void {
     this.showAlert (message, AlertTypes.DANGER);
   }
 
-  showAlertSuccess(message: string){
+  public showAlertSuccess(message: string): void {
     this.showAlert (message, AlertTypes.SUCCESS, 3000);
   }
 
-  showConfirm(title: string, body: string, cancelButtonText?: string, okButtonText?: string) {
+  public showConfirm(title: string, body: string, cancelButtonText?: string, okButtonText?: string): Subject<boolean> | boolean {
     const bsModalRef: BsModalRef = this.modalService.show (ConfirmModalComponent);
     bsModalRef.content.title = title;
     bsModalRef.content.body = body;
@@ -47,6 +48,6 @@ export class AlertModalService {
       bsModalRef.content.okButtonText = okButtonText;
     }
 
-    return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+    return (bsModalRef.content as ConfirmModalComponent).confirmResult;
   }
 }
