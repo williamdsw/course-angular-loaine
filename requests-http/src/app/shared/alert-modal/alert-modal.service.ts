@@ -35,7 +35,7 @@ export class AlertModalService {
     this.showAlert (message, AlertTypes.SUCCESS, 3000);
   }
 
-  public showConfirm(title: string, body: string, cancelButtonText?: string, okButtonText?: string): Subject<boolean> | boolean {
+  public showConfirm(title: string, body: string, cancelButtonText?: string, okButtonText?: string): Subject<boolean>{
     const bsModalRef: BsModalRef = this.modalService.show (ConfirmModalComponent);
     bsModalRef.content.title = title;
     bsModalRef.content.body = body;

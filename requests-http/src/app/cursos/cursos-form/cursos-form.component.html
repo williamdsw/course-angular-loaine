@@ -3,12 +3,11 @@
 
         <!-- nome -->
         <div class="col-sm-12">
-            <label for="inputNome"> Nome do Curso </label>
-            <input type="text" 
-                   id="inputNome" 
-                   class="form-control" 
-                   placeholder="Nome do Curso"
-                   formControlName="nome"
+            <label for="inputNome"> 
+                Nome do Curso 
+            </label>
+            <input type="text" id="inputNome" class="form-control" 
+                   placeholder="Nome do Curso" formControlName="nome"
                    [ngClass]="{ 'is-invalid' : submitted && hasError ('nome') }">
 
             <!-- validacoes -->

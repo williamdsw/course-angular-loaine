@@ -10,14 +10,14 @@ export class CrudService<T> {
 
   // HELPER FUNCTIONS
 
-  public list(): Observable<T[]> | T[] {
+  public list(): Observable<T[]> {
     return this.httpClient.get<T[]> (this.urlApi).pipe (
       delay (2000),
       tap (console.log)
     );
   }
 
-  public loadById(id: number): Observable<T> | T {
+  public loadById(id: number): Observable<T> {
     return this.httpClient.get<T> (`${this.urlApi}/${id}`).pipe (take (1));
   }
 

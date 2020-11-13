@@ -20,12 +20,8 @@ export class CursoResolverGuard implements Resolve<Curso>{
       return this.service.loadById (id);
     }
 
-    const curso: Curso = {
-      id: null,
-      nome: null
-    };
+    const curso: Curso = { id: null, nome: null };
 
     return of (curso);
   }
-  
 }

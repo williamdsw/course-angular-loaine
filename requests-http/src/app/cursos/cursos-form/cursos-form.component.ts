@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
 
 import { CursosService } from '../cursos.service';
 import { AlertModalService } from 'src/app/shared/alert-modal/alert-modal.service';
@@ -11,13 +10,12 @@ import { Curso } from '../curso';
 
 @Component({
   selector: 'app-cursos-form',
-  templateUrl: './cursos-form.component.html',
-  styleUrls: ['./cursos-form.component.scss']
+  templateUrl: './cursos-form.component.html'
 })
 export class CursosFormComponent implements OnInit {
 
-  form: FormGroup;
-  submitted: boolean = false;
+  public form: FormGroup;
+  public submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,18 +31,21 @@ export class CursosFormComponent implements OnInit {
     this.form = this.formBuilder.group (
     {
       id: [curso.id],
-      nome: [curso.nome, [ Validators.required, Validators.minLength (3), Validators.maxLength (250) ]]
+        nome: [
+          curso.nome,
+          [Validators.required, Validators.minLength(3), Validators.maxLength(250)]
+        ]
     });
   }
 
-  hasError (field: string) {
+  public hasError(field: string): ValidationErrors {
     return this.form.get (field).errors;
   }
 
-  onSubmit() {
+  public onSubmit(): void {
 
-    let successMessage: string = 'Criado com sucesso!';
-    let errorMessage: string = 'Erro ao criar curso, tente novamente.';
+    let successMessage = 'Criado com sucesso!';
+    let errorMessage = 'Erro ao criar curso, tente novamente.';
 
     this.submitted = true;
     if (this.form.valid) {
@@ -64,7 +65,7 @@ export class CursosFormComponent implements OnInit {
     }
   }
 
-  onCancel() {
+  public onCancel(): void {
     this.submitted = false;
     this.form.reset ();
   }

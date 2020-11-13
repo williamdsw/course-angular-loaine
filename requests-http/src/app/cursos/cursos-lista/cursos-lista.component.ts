@@ -1,27 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, EMPTY, Subject } from 'rxjs';
 import { catchError, take, switchMap } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
 
 import { CursosService } from '../cursos.service';
+import { AlertModalService } from 'src/app/shared/alert-modal/alert-modal.service';
 
 import { Curso } from '../curso';
-
-import { AlertModalService } from 'src/app/shared/alert-modal/alert-modal.service';
 
 @Component({
   selector: 'app-cursos-lista',
   templateUrl: './cursos-lista.component.html',
-  styleUrls: ['./cursos-lista.component.scss'],
   preserveWhitespaces: true
 })
 export class CursosListaComponent implements OnInit {
 
   // anotacao ($dollar) para Observable
-  cursos$: Observable<Curso[]>;
-  error$ = new Subject<boolean>();
+  public cursos$: Observable<Curso[]>;
+  public error$ = new Subject<boolean>();
 
-  cursoSelecionado: Curso;
+  public cursoSelecionado: Curso;
 
   constructor(
     private cursoService: CursosService,
@@ -33,7 +31,7 @@ export class CursosListaComponent implements OnInit {
     this.onRefresh ();
   }
 
-  onRefresh() {
+  public onRefresh(): void {
     this.cursos$ = this.cursoService.list ().pipe (
 
       // recomendado ser ultimo operador do pipe
@@ -46,18 +44,19 @@ export class CursosListaComponent implements OnInit {
     );
   }
 
-  handleError() {
+  private handleError(): void {
     this.alertModalService.showAlertDanger ('Erro ao carregar cursos. Tente novamente mais tarde.');
   }
 
-  onEdit(id: number) {
+  public onEdit(id: number): void {
     this.router.navigate (['editar', id], { relativeTo: this.route });
   }
 
-  onDelete(curso: Curso) {
+  public onDelete(curso: Curso): void {
     this.cursoSelecionado = curso;
-     const result$ = this.alertModalService.showConfirm ('Confirmação', 'Tem certeza que deseja remover esse curso?');
-     result$.asObservable ().pipe (
+    const confirmMessage = 'Tem certeza que deseja remover esse curso?';
+     const result$ = this.alertModalService.showConfirm('Confirmação', confirmMessage);
+     result$.asObservable().pipe (
        take (1),
        switchMap (result => result ? this.cursoService.remove (curso) : EMPTY)
      )

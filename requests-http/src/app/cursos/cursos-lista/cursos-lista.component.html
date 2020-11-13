@@ -5,12 +5,17 @@
         </div>
 
         <div class="float-right">
-            <button type="button" class="btn btn-primary" [routerLink]="['novo']"> Novo Curso </button>
-            <button type="button" class="btn btn-secondary" (click)="onRefresh ();"> Atualizar </button>
+            <button type="button" class="btn btn-primary" [routerLink]="['novo']"> 
+                Novo Curso 
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="onRefresh ();"> 
+                Atualizar 
+            </button>
         </div>
     </div>
 
     <div class="card-body">
+
         <!-- Armazena o observable async dentro da variavel 'cursos' -->
         <table class="table table-hover" *ngIf="cursos$ | async as cursos; else loadingError">
             <thead>
@@ -22,13 +27,16 @@
             </thead>
             <tbody>
                 <tr *ngFor="let curso of cursos">
-                    <td> {{ curso.id }}</td>
-                    <td> {{ curso.nome }}</td>
+                    <td> {{ curso.id }} </td>
+                    <td> {{ curso.nome }} </td>
                     <td>
                         <span class="float-right">
-                            <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit (curso.id);"> Atualizar </button>
-                            
-                            <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete (curso);"> Remover </button>
+                            <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit (curso.id);"> 
+                                Atualizar 
+                            </button>
+                            <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete (curso);"> 
+                                Remover 
+                            </button>
                         </span>
                     </td>
                 </tr>
