@@ -1,22 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { tap } from 'rxjs/operators';
 
 import { EnviarValorService } from '../enviar-valor.service';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-poc',
   template: `
-    <app-poc-base 
-      [nome]="nome" 
-      [valor]="valor" 
-      estilo="bg-success">
+    <app-poc-base
+      [nome]="nome" [valor]="valor" estilo="bg-success">
     </app-poc-base>
   `
 })
 export class PocComponent implements OnInit, OnDestroy {
 
-  nome: string = 'Componente sem unsubscribe';
-  valor: string;
+  public nome = 'Componente sem unsubscribe';
+  public valor: string;
 
   constructor(private enviarValorService: EnviarValorService) { }
 

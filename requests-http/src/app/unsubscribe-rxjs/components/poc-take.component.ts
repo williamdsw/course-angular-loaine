@@ -6,17 +6,15 @@ import { EnviarValorService } from '../enviar-valor.service';
 @Component({
   selector: 'app-poc-take',
   template: `
-    <app-poc-base 
-      [nome]="nome" 
-      [valor]="valor" 
-      estilo="bg-success">
+    <app-poc-base
+      [nome]="nome" [valor]="valor" estilo="bg-success">
     </app-poc-base>
   `
 })
 export class PocTakeComponent implements OnInit, OnDestroy {
 
-  nome: string = 'Componente com take';
-  valor: string;
+  public nome = 'Componente com take';
+  public valor: string;
 
   constructor(private enviarValorService: EnviarValorService) { }
 

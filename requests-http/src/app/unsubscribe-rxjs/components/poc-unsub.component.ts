@@ -1,25 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { EnviarValorService } from '../enviar-valor.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-poc-unsub',
   template: `
-    <app-poc-base 
-      [nome]="nome" 
-      [valor]="valor" 
-      estilo="bg-success">
+    <app-poc-base
+      [nome]="nome" [valor]="valor" estilo="bg-success">
     </app-poc-base>
   `
 })
 export class PocUnsubComponent implements OnInit, OnDestroy {
 
-  nome: string = 'Componente com unsubscribe';
-  valor: string;
+  public nome = 'Componente com unsubscribe';
+  public valor: string;
 
-  subs: Subscription[] = [];
+  public subs: Subscription[] = [];
 
   constructor(private enviarValorService: EnviarValorService) { }
 
@@ -30,7 +28,7 @@ export class PocUnsubComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subs.forEach (sub => { sub.unsubscribe (); });
+    this.subs.forEach (sub => sub.unsubscribe());
     console.log (`${this.nome} foi destruido.`);
   }
 

@@ -2,18 +2,16 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-poc-base',
-  templateUrl: './poc-base.component.html',
-  styleUrls: ['./poc-base.component.scss']
+  templateUrl: './poc-base.component.html'
 })
 export class PocBaseComponent implements OnInit {
 
-  @Input() nome: string;
-  @Input() valor: string;
-  @Input() estilo: string;
+  @Input() public nome: string;
+  @Input() public valor: string;
+  @Input() public estilo: string;
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

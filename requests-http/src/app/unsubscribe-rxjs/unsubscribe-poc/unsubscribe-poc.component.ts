@@ -1,25 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+
 import { EnviarValorService } from '../enviar-valor.service';
 
 @Component({
   selector: 'app-unsubscribe-poc',
-  templateUrl: './unsubscribe-poc.component.html',
-  styleUrls: ['./unsubscribe-poc.component.scss']
+  templateUrl: './unsubscribe-poc.component.html'
 })
 export class UnsubscribePocComponent implements OnInit {
 
-  mostrarComponentes: boolean = true;
+  public mostrarComponentes = true;
 
   constructor(private enviarValorService: EnviarValorService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  emitirValor(valor: string) {
+  public emitirValor(valor: string): void {
     this.enviarValorService.emitirValor (valor);
   }
 
-  destruirCompontentes() {
+  public destruirCompontentes(): void {
     this.mostrarComponentes = !this.mostrarComponentes;
   }
 
