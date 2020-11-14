@@ -1,23 +1,21 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+import { filterResponse, uploadProgress } from '../shared/rxjs-operators';
 
-import { UploadFileService } from './upload-file.service';
 import { environment } from 'src/environments/environment';
 
-import { filterResponse, uploadProgress } from '../shared/rxjs-operators'
+import { UploadFileService } from './upload-file.service';
 
 @Component({
   selector: 'app-upload-file',
-  templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.scss']
+  templateUrl: './upload-file.component.html'
 })
 export class UploadFileComponent implements OnInit, OnDestroy {
 
   public files: Set<File>;
   public fileNames: string[] = [];
-  public uploading: boolean = false;
-  public progress: number = 0;
+  public isUploading = false;
+  public progress = 0;
 
   private subscription$: Subscription;
 
@@ -31,38 +29,54 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     this.subscription$.unsubscribe ();
   }
 
-  onChange(event) {
+  public onChange(event): void {
     console.log (event);
 
     this.fileNames = [];
-    this.uploading = false;
+    this.isUploading = false;
     this.progress = 0;
 
-    const selectedFiles = <FileList>event.srcElement.files;
-    const labelCustomFile = document.getElementById ('labelCustomFile');
-    
-    this.files = new Set ();
-    for (let index = 0; index < selectedFiles.length; index++) {
-      this.fileNames.push (selectedFiles.item (index).name);
-      this.files.add (selectedFiles.item (index));
-    }
+    if (event !== null) {
+      const selectedFiles = event.srcElement.files as FileList;
+      const labelCustomFile = document.querySelector('#labelCustomFile');
 
-    labelCustomFile.innerHTML = (this.fileNames.length > 1 ? 'Múltiplos arquivos...' : (this.fileNames.length == 1 ? 'Um arquivo apenas...' : 'Selecionar Arquivo'));
+      if (labelCustomFile) {
+        this.files = new Set ();
+        for (let index = 0; index < selectedFiles.length; index++) {
+          this.fileNames.push (selectedFiles.item (index).name);
+          this.files.add (selectedFiles.item (index));
+        }
+      }
+
+      const filesLengthText = {
+        empty: 'Selecionar Arquivo',
+        single: 'Um arquivo apenas...',
+        multiples: 'Múltiplos arquivos...'
+      };
+
+      labelCustomFile.innerHTML = (this.fileNames.length > 1 ? filesLengthText.multiples :
+                                  (this.fileNames.length === 1 ? filesLengthText.single : filesLengthText.empty));
+    }
   }
 
-  onUpload() {
-
+  public onUpload(): void {
     if (this.files && this.files.size >= 1) {
-      this.uploading = true;
-      this.subscription$ = this.uploadService.upload (this.files, environment.BASE_URL + '/upload')
+      const url = `${environment.BASE_URL}/upload`;
+      console.log('url', url);
+      this.isUploading = true;
+      this.subscription$ = this.uploadService.upload (this.files, url)
         .pipe (
-          uploadProgress (pgr => { this.progress = pgr; }),
-          filterResponse ()
-        ).subscribe ( response => console.log ('Upload Concluído') );
+          uploadProgress ((pgr) => { this.progress = pgr; }),
+          filterResponse()
+      ).subscribe((response) => {
+        console.log('response', response);
+        alert('Upload Concluído');
+        this.onChange(null);
+      });
     }
   }
 
-  onDownloadExcel() {
+  public onDownloadExcel(): void {
     this.uploadService.download (environment.BASE_URL + '/downloadExcel').subscribe (
       (response: any) => {
         this.uploadService.handleFile (response, 'teste.xlsx');
@@ -70,12 +84,11 @@ export class UploadFileComponent implements OnInit, OnDestroy {
     );
   }
 
-  onDownloadPdf() {
+  public onDownloadPdf(): void {
     this.uploadService.download (environment.BASE_URL + '/downloadPDF').subscribe (
       (response: any) => {
         this.uploadService.handleFile (response, 'teste.pdf');
       }
     );
   }
-
 }

@@ -11,6 +11,13 @@ const app = express();
 app.use (bodyParser.json ());
 app.use (bodyParser.urlencoded ({ extended: true }));
 
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200
+};
+
+app.use (cors (corsOptions));
+
 const multipartMiddleware = multipart ({
     uploadDir: './uploads'
 });
@@ -25,11 +32,11 @@ app.post ('/upload', multipartMiddleware, (request, response) => {
 });
 
 app.get ('/downloadExcel', (request, response) => {
-    response.download ('./uploads/teste.xlsx');
+    response.download ('./downloads/teste.xlsx');
 });
 
 app.get ('/downloadPDF', (request, response) => {
-    response.download ('./uploads/teste.pdf');
+    response.download ('./downloads/teste.pdf');
 });
 
 app.use ((error, request, response, next) => {

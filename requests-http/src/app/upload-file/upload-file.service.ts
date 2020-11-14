@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class UploadFileService {
 
   constructor(private httpClient: HttpClient) { }
 
-  upload(files: Set<File>, url: string) {
+  public upload(files: Set<File>, url: string): Observable<any> {
 
     // Passa arquivos para FormData
     const formData = new FormData ();
@@ -23,18 +24,16 @@ export class UploadFileService {
     });
   }
 
-  download(url: string) {
+  public download(url: string): Observable<any> {
     return this.httpClient.get (url, {
       responseType: 'blob' as 'json'
-      //reportProgress: true // necessita de content-length no backend
+      // reportProgress: true // necessita de content-length no backend
     });
   }
 
-  handleFile(response: any, fileName: string) {
-    // Criando arquivo a partir do response 
-    const file = new Blob ([ response ], {
-      type: response.type
-    });
+  public handleFile(response: any, fileName: string): void {
+    // Criando arquivo a partir do response
+    const file = new Blob ([ response ], { type: response.type });
 
     // IE
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
@@ -44,12 +43,11 @@ export class UploadFileService {
 
     // Cria link a partir do arquivo
     const blob = window.URL.createObjectURL (file);
-
-    const downloadLink = document.createElement ("a");
+    const downloadLink = document.createElement ('a');
     downloadLink.href = blob;
     downloadLink.download = fileName;
 
-    //downloadLink.click ();
+    // downloadLink.click ();
     downloadLink.dispatchEvent (new MouseEvent ('click', {
       bubbles: true,
       cancelable: true,
@@ -57,7 +55,7 @@ export class UploadFileService {
     }));
 
     // Exclui objeto
-    setTimeout(() => { //firefox
+    setTimeout(() => { // firefox
       window.URL.revokeObjectURL (blob);
       downloadLink.remove ();
     }, 100);
